@@ -25,9 +25,16 @@ export class ProjectConfig extends SeedAdvancedConfig {
     // Add `local` third-party libraries to be injected/bundled.
     this.APP_ASSETS = [
       ...this.APP_ASSETS,
-      // {src: `${this.APP_SRC}/your-path-to-lib/libs/jquery-ui.js`, inject: true, vendor: false}
+      // {src: `${this.APP_SRC}/client/vendor/pouchdb-6.0.7.min.js`, inject: true, vendor: true}
       // {src: `${this.CSS_SRC}/path-to-lib/test-lib.css`, inject: true, vendor: false},
+      {src: `${this.APP_BASE}node_modules/mdi/css/materialdesignicons.min.css`, inject: true, vendor: true},
+      {src: `${this.CSS_SRC}/materialize.min.css`, inject: true, vendor: true},
+      {src: `${this.APP_SRC}/vendor/pouchdb-6.0.7.min.js`, inject: true, vendor: true},
     ];
+
+    //this.SYSTEM_CONFIG_DEV.packageConfigPaths = this.SYSTEM_CONFIG_DEV.packageConfigPaths.concat([
+    //  `${this.APP_BASE}node_modules/@angular/material/package.json`
+    //])
 
     /* Add to or override NPM module configurations: */
     // this.mergeObject(this.PLUGIN_CONFIGS['browser-sync'], { ghostMode: false });

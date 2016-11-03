@@ -66,3 +66,6 @@ ChromeDebugger-UserData
 
 # OS X trash files
 .DS_Store
+
+#Other trash
+.vscode

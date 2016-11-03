@@ -1,0 +1,59 @@
+:host {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.title-pan {
+	width: 100%;
+	min-height: 50px;
+	height: 50px;
+	-webkit-app-region: drag;
+  -webkit-user-select: none;
+	background: #0089ec;
+	display: flex;
+  justify-content: space-between;
+}
+
+.title-p {
+	margin: 0;
+  line-height: 50px;
+  margin-left: 25px;
+  font-size: 25px;
+	font-weight: bold;
+	color: #fafafa;
+}
+
+.window-controls {
+  width: 100px;
+	height: 46px;
+  line-height: 50px;
+  margin: 2px 12px;
+	display: flex;
+}
+
+.window-controls div {
+	cursor: pointer;
+	-webkit-app-region: no-drag;
+}
+
+.window-controls div i {
+	color: #fafafa;
+	margin: 0 5px;
+}
+
+.window-controls div:first-child {
+	display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.window-controls div:first-child i {
+	line-height: 32px;
+}
+
+.window-controls div:last-child:hover i {
+	color: red;
+}
