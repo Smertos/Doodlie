@@ -13,31 +13,19 @@ export class ProjectConfig extends SeedAdvancedConfig {
     super();
     this.APP_TITLE = 'Doodlie';
 
-    /* Enable typeless compiler runs (faster) between typed compiler runs. */
-    // this.TYPED_COMPILE_INTERVAL = 5;
-
     // Add `NPM` third-party libraries to be injected/bundled.
     this.NPM_DEPENDENCIES = [
       ...this.NPM_DEPENDENCIES,
-      // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
     ];
 
     // Add `local` third-party libraries to be injected/bundled.
     this.APP_ASSETS = [
       ...this.APP_ASSETS,
-      // {src: `${this.APP_SRC}/client/vendor/pouchdb-6.0.7.min.js`, inject: true, vendor: true}
-      // {src: `${this.CSS_SRC}/path-to-lib/test-lib.css`, inject: true, vendor: false},
       {src: `${this.APP_BASE}node_modules/mdi/css/materialdesignicons.min.css`, inject: true, vendor: true},
       {src: `${this.CSS_SRC}/materialize.min.css`, inject: true, vendor: true},
-      {src: `${this.APP_SRC}/vendor/pouchdb-6.0.7.min.js`, inject: true, vendor: true},
+      {src: `${this.APP_BASE}node_modules/pouchdb/dist/pouchdb.min.js`, inject: true, vendor: true},
+      {src: `${this.APP_BASE}node_modules/pouchdb-quick-search/dist/pouchdb.quick-search.min.js`, inject: true, vendor: true}
     ];
-
-    //this.SYSTEM_CONFIG_DEV.packageConfigPaths = this.SYSTEM_CONFIG_DEV.packageConfigPaths.concat([
-    //  `${this.APP_BASE}node_modules/@angular/material/package.json`
-    //])
-
-    /* Add to or override NPM module configurations: */
-    // this.mergeObject(this.PLUGIN_CONFIGS['browser-sync'], { ghostMode: false });
   }
 
 }

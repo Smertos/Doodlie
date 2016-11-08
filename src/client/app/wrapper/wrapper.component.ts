@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
+import { BoardsService } from '../services/boards.service';
 
 @Component({
   moduleId:       module.id,
@@ -8,8 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WrapperComponent implements OnInit {
 
-  constructor() { }
+  @HostBinding('class.opened') boardOpened: boolean = false;
+
+  constructor(private boardsService: BoardsService) { }
 
   ngOnInit() { }
 
+  right() {
+    console.log('right -->');
+    this.boardOpened = true;
+  }
+  
+  left() {
+    console.log('<-- left');
+    this.boardOpened = false;
+  }
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { Http } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -14,19 +15,21 @@ import { WrapperComponent } from './app/wrapper/wrapper.component';
 
 import { BoardsService } from './app/services/boards.service';
 
-declare var window, console
+declare var window, console;
 
-// For AoT compilation to work:
+// For AoT compilation to work
 export function win() {
-  return window
+  return window;
 }
 export function cons() {
-  return console
+  return console;
 }
 
+//Our module
 @NgModule({
   imports: [
     BrowserModule,
+    FormsModule,
     StoreModule.provideStore({
       /* reducerName: reducerFunc */
     }),

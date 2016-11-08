@@ -1,5 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-
+import { Component, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
 @Component({
   moduleId:       module.id,
   selector:       'app-root',
@@ -7,6 +6,13 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   styleUrls:      [ 'app.component.css' ],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   appTitle: string = 'Doodlie';
+
+  ngAfterViewInit() {
+    let loaderStyle = (<HTMLElement>document.getElementById('loader')).style;
+    
+    loaderStyle.opacity = '0';
+    setTimeout(() => loaderStyle.display = 'none', 900);
+  }
  }

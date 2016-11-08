@@ -1,1 +1,5 @@
-<h1>I'm BoardsListComponent</h1>
+<span id="boardsLabel">Select your board:</span>
+
+<ul>
+	<li *ngFor="let board of boards">{{ board.name }}</li>
+</ul>
