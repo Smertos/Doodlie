@@ -4,33 +4,48 @@
   height: 100%;
   border: 0;
   margin: 0;
-  padding: 20px;
+  padding: 0;
   word-break: break-word;
-}
-
-:host #boardsLabel {
-  width: 100%;
-  margin: 10px;
-  color: #151515;
-  font-size: x-large;
+  flex: 1;
 }
 
 :host ul {
-  margin: 10px 0;
+  margin: 10px 5px;
+  display: inline-block;
 }
 
 :host ul li {
-  display: inline-flex;
   color: white;
-  width: 200px;
-  height: 120px;
+  width: 240px;
+  height: 140px;
   background: #0074c7;
   margin: 10px;
   padding: 10px;
   border-radius: 5px;
   font-weight: 700;
   font-size: 1.25em;
-  flex-direction: column;
-  justify-content: flex-end; /* TODO: replace justify with something cooler */
   word-break: break-all;
+  cursor: pointer;
+  float: left;
+  display: block;
+}
+
+:host ul li span {
+    line-height: 190px;
+    margin: 4px;
+}
+
+li#new-board {
+  background: transparent !important;
+  padding: 0;
+}
+
+li#new-board span {
+  color: grey;
+  font-weight: 100;
+  line-height: 250px;
+}
+
+li#new-board span:hover {
+  text-decoration: underline;
 }

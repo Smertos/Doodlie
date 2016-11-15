@@ -1,3 +1,5 @@
+import 'pubsub-js';
+
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { BoardsService } from '../services/boards.service';
 
@@ -13,15 +15,8 @@ export class WrapperComponent implements OnInit {
 
   constructor(private boardsService: BoardsService) { }
 
-  ngOnInit() { }
-
-  right() {
-    console.log('right -->');
-    this.boardOpened = true;
-  }
-  
-  left() {
-    console.log('<-- left');
-    this.boardOpened = false;
+  ngOnInit() { 
+    PubSub.subscribe('wrapper.boardOpen', () => this.boardOpened = true);
+    PubSub.subscribe('wrapper.boardClose', () => this.boardOpened = false);
   }
 }

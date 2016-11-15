@@ -1,5 +1,4 @@
-<span id="boardsLabel">Select your board:</span>
-
 <ul>
-	<li *ngFor="let board of boards">{{ board.name }}</li>
+	<li *ngFor="let board of boards" (click)="openBoard($event, board.name)"><span>{{ board.name.length > 22 ? board.name.slice(0, 20) + '...' : board.name }}</span></li>
+	<li id="new-board"><span (click)="newBoard($event)">Create new board...</span></li>
 </ul>

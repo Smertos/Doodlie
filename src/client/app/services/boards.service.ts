@@ -32,4 +32,8 @@ export class BoardsService {
     return new Promise<Board[]>(res => setTimeout(res, 1000)).then(() => this.getBoards());
   }
 
+  newBoard(name: string) {
+    console.log(`Creating new board '${name}'`);
+  }
+
 }

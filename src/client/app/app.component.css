@@ -16,6 +16,8 @@
 	background: #0089ec;
 	display: flex;
   justify-content: space-between;
+	z-index: 10;
+	position: relative;
 }
 
 .title-p {
@@ -25,6 +27,7 @@
   font-size: 25px;
 	font-weight: bold;
 	color: #fafafa;
+	cursor: pointer;
 }
 
 .window-controls {
@@ -57,4 +60,21 @@
 
 .window-controls div:last-child:hover i {
 	color: red;
+}
+
+#status-block {
+	height: 30px;
+	background: darkturquoise;
+	z-index: 5;
+	position: relative;
+	top: -30px;
+	transition: top 0.3s ease-out;
+}
+
+#status-block span {
+	line-height: 30px;
+	margin: 0 20px;
+	color: white;
+	font-size: medium;
+	font-weight: 700;
 }

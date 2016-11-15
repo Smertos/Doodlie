@@ -1,10 +1,13 @@
-<div class="title-pan z-depth-1">
-  <div class="title-p">{{ appTitle }}</div>
+<div class="title-pan z-depth-2">
+  <div class="title-p" (click)="back()">{{ appTitle }}</div>
   <div class="window-controls">
     <div (click)="minimize()"><i class="mdi mdi-window-minimize"></i></div>
     <div *ngIf="!maximized" (click)="maximize()"><i class="mdi mdi-window-maximize"></i></div>
     <div *ngIf="maximized" (click)="maximize()"><i class="mdi mdi-window-restore"></i></div>
     <div (click)="close()"><i class="mdi mdi-close"></i></div>
   </div>
+</div>
+<div id="status-block" class="z-depth-1">
+  <span>{{ statusLine }}</span>
 </div>
 <app-wrapper></app-wrapper>
