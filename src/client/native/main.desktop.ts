@@ -19,7 +19,8 @@ app.on('ready', () => {
   //Initialize new window
   mainWindow = new BrowserWindow({
     width: 800,
-    height: 600
+    height: 600,
+    frame: false
   })
   //Hide window, load app, set window title and show it
   mainWindow.hide()

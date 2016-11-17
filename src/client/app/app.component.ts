@@ -8,13 +8,11 @@ import { Component, ChangeDetectionStrategy, OnInit, AfterViewInit } from '@angu
   changeDetection: ChangeDetectionStrategy.Default
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  appTitle: string = 'Doodlie';
-  statusLine: string = 'Select your board';
+  appTitle: string = 'DOODLIE';
+  subTitle: string = 'Select your board';
 
   ngOnInit() {
-    document.addEventListener('d.open-board', e => {
-      console.log(e);
-    });
+    PubSub.subscribe('app.setSubTitle', (ename, newSubTitle) => this.subTitle = newSubTitle);
   }
 
   ngAfterViewInit() {
