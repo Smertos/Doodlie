@@ -1,51 +1,70 @@
 :host {
-  width: 100%;
-  max-width: 100%;
-  height: 100%;
-  border: 0;
-  margin: 0;
-  padding: 0;
-  word-break: break-word;
-  flex: 1;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    word-break: break-word;
+    flex: 1;
 }
 
-:host ul {
-  margin: 10px 5px;
-  display: inline-block;
+:host div {
+    margin: 10px 5px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-:host ul li {
-  color: white;
-  width: 240px;
-  height: 140px;
-  background: #0074c7;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  font-weight: 700;
-  font-size: 1.25em;
-  word-break: break-all;
-  cursor: pointer;
-  float: left;
-  display: block;
+:host div md-card {
+    color: white;
+    width: 240px;
+    height: 140px;
+    background: #0074c7;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 1.25em;
+    word-break: break-all;
+    cursor: pointer;
+    display: list-item;
+    box-sizing: border-box;
 }
 
-:host ul li span {
+:host div md-card span {
     line-height: 190px;
     margin: 4px;
 }
 
-li#new-board {
-  background: transparent !important;
-  padding: 0;
+:host div md-card a {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    will-change: opacity;
+    opacity: 0;
+    transition: 0.2s opacity;
 }
 
-li#new-board span {
-  color: grey;
-  font-weight: 100;
-  line-height: 250px;
+:host div md-card:hover a {
+    opacity: 0.25;
 }
 
-li#new-board span:hover {
-  text-decoration: underline;
+:host div md-card a:hover {
+    opacity: 1;
+}
+
+md-card#new-board {
+    background: transparent !important;
+    padding: 0;
+    box-shadow: none;
+}
+
+md-card#new-board span {
+    color: grey;
+    font-weight: 100;
+    line-height: 250px;
+}
+
+md-card#new-board span:hover {
+    text-decoration: underline;
 }

@@ -1,0 +1,16 @@
+{
+    "name": "Doodlie",
+    "short_name": "Doodlie",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "theme_color": "#0089EC",
+    "background_color": "#FFFFFF",
+    "icons": [
+        {
+            "src": "/assets/icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

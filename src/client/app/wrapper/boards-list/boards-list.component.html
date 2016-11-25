@@ -1,4 +1,8 @@
-<ul>
-	<li *ngFor="let board of boards" (click)="openBoard($event, board.name)"><span>{{ board.name.length > 22 ? board.name.slice(0, 20) + '...' : board.name }}</span></li>
-	<li id="new-board"><span (click)="newBoard($event)">Create new board...</span></li>
-</ul>
+<div>
+	<md-card *ngFor="let board of boards" (click)="openBoard($event, board.name)">
+		<span>{{ board.name.length > 22 ? board.name.slice(0, 20) + '...' : board.name }}</span>
+		<a (click)="openBoardProps($event, board)"><i class="mdi mdi-dots-vertical"></i></a>
+	</md-card>
+
+	<md-card id="new-board"><span (click)="newBoard($event)">Create new board...</span></md-card>
+</div>

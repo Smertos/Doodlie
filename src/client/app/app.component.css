@@ -1,10 +1,10 @@
 :host {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
 	font-family: "Roboto", sans-serif;
 }
 
@@ -13,29 +13,30 @@
 	min-height: 50px;
 	height: 50px;
 	-webkit-app-region: drag;
-  -webkit-user-select: none;
+	-webkit-user-select: none;
 	background: #0089ec;
 	display: flex;
-  justify-content: space-between;
+	justify-content: space-between;
 	z-index: 10;
 	position: relative;
+	box-shadow: 0 0 2px #000;
 }
 
 .title-p {
 	margin: 0;
-  line-height: 50px;
-  margin-left: 25px;
-  font-size: 25px;
+	line-height: 50px;
+	margin-left: 25px;
+	font-size: 25px;
 	font-weight: bold;
 	color: #fafafa;
 	cursor: pointer;
 }
 
 .window-controls {
-  width: 100px;
+	width: 100px;
 	height: 46px;
-  line-height: 50px;
-  margin: 2px 12px;
+	line-height: 50px;
+	margin: 2px 12px;
 	display: flex;
 }
 
@@ -51,8 +52,8 @@
 
 .window-controls div:first-child {
 	display: flex;
-  justify-content: flex-end;
-  flex-direction: column;
+	justify-content: flex-end;
+	flex-direction: column;
 }
 
 .window-controls div:first-child i {
@@ -65,17 +66,101 @@
 
 #status-block {
 	height: 30px;
-	background: darkturquoise;
+	display: flex;
 	z-index: 5;
 	position: relative;
-	top: -30px;
-	transition: top 0.3s ease-out;
+	transition: top 0.3s ease-in-out;
+	padding: 0 20px;
+	justify-content: space-between;
+	background: darkturquoise;
+	box-shadow: 0 0 4px #000;
 }
 
 #status-block span {
 	line-height: 30px;
-	margin: 0 20px;
 	color: white;
 	font-size: medium;
 	font-weight: 700;
+	margin: 0 6px;
+}
+
+#arrow {
+	cursor: pointer;
+}
+
+#prompt-wrapper {
+	width: 100%;
+	height: calc(100% - 80px);
+	position: fixed;
+	top: 80px;
+	z-index: 4;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.blurry {
+	filter: blur(2px);
+}
+
+#prompt-title {
+	font-weight: 300;
+	font-size: 24px;
+}
+
+#prompt-wrapper md-card {
+    width: 300px;
+    margin: 0 auto;
+	height: 160px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+#prompt-wrapper md-card md-input {
+    width: 100%;
+    margin: 0 auto;
+}
+
+#prompt-wrapper md-card md-button {
+    width: 100px;
+    margin: 0 auto;
+}
+
+#side-pan {
+	width: 400px;
+	height: calc(100% - 50px);
+	position: absolute;
+	z-index: 6;
+	top: 80px;
+	right: 0;
+	background: white;
+	transition: right 0.3s ease-in-out;
+	box-shadow: -4px 0 8px -5px #000;
+	display: flex;
+    flex-direction: column;
+}
+
+.filler {
+	flex: 1 1 auto;
+}
+
+#side-board-name {
+	font-size: 2em;
+	font-weight: 700;
+}
+
+#side-pan md-toolbar {
+	padding: 0 50px;
+}
+
+#side-pan md-toolbar span {
+	position: absolute;
+	left: 16px;
+	cursor: pointer;
+}
+
+#side-pan .content {
+	flex-grow: 1;
+	padding: 20px;
 }
