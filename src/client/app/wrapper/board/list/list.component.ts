@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { OnInit, Input } from '@angular/core';
+import { BaseComponent } from '../../../decorators/base.component';
 import { List } from '../../../models/list';
 
-
-@Component({
+@BaseComponent({
   moduleId:       module.id,
   selector:       'app-list',
   templateUrl:    'list.component.html',
@@ -13,7 +13,7 @@ export class BoardComponent implements OnInit {
   @Input() list: List;
   newTitleName: string = '';
 
-  constructor(private cdr: ChangeDetectorRef) { }
+  constructor() { }
 
   ngOnInit() { }
 
@@ -21,6 +21,5 @@ export class BoardComponent implements OnInit {
     console.log('New card title', this.newTitleName);
     console.log('List', this.list);
     this.list.createCard(this.newTitleName);
-    this.cdr.detectChanges();
   }
 }

@@ -1,11 +1,14 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import 'pubsub-js';
+
+import { OnInit, Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { BaseComponent } from '../../decorators/base.component';
 import { BoardsService } from '../../services/boards.service';
 import { Board } from '../../models/board';
 
 let _ = require('lodash');
 
-@Component({
+@BaseComponent({
   moduleId:       module.id,
   selector:       'app-boards-list',
   templateUrl:    'boards-list.component.html',
@@ -20,7 +23,9 @@ export class BoardsListComponent implements OnInit {
 
   ngOnInit() {
     this.bService.subscribe(boards => this.boards = _.sortBy(boards, ['createTime', 'name']));
-    this.bService.getAllBoards().then(boards => this.boards = _.sortBy(boards, ['createTime', 'name']));
+    this.bService.getAllBoards().then(boards => {
+      this.boards = _.sortBy(boards, ['createTime', 'name']);
+    });
 
     PubSub.subscribe('app.promptSubmit', (en, { text: text }) => {
       let board: Board = this.bService.newBoard(text);

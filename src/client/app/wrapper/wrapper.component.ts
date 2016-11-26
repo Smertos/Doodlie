@@ -1,9 +1,10 @@
 import 'pubsub-js';
 
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { OnInit, HostBinding } from '@angular/core';
+import { BaseComponent } from '../decorators/base.component';
 import { BoardsService } from '../services/boards.service';
 
-@Component({
+@BaseComponent({
   moduleId:       module.id,
   selector:       'app-wrapper',
   templateUrl:    'wrapper.component.html',

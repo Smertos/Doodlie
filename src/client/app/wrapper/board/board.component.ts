@@ -1,14 +1,14 @@
-import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { OnInit, Output, EventEmitter } from '@angular/core';
+import { BaseComponent } from '../../decorators/base.component';
 import { BoardsService } from '../../services/boards.service';
 import { Board } from '../../models/board';
 import { List } from '../../models/list';
 
-@Component({
+@BaseComponent({
   moduleId:       module.id,
   selector:       'app-board',
   templateUrl:    'board.component.html',
-  styleUrls:      ['board.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls:      ['board.component.css']
 })
 export class BoardComponent implements OnInit {
 
@@ -20,12 +20,12 @@ export class BoardComponent implements OnInit {
   constructor(private bService: BoardsService) { }
 
   ngOnInit() {
-    //TODO: Create BaseComponent class extending Angular's Component and implement global promisable events in it with pubsub
     PubSub.subscribe('board.loadBoard', (ename: string, b: Board) => {
       this.board = b;
 
-      this.bService.getAllLists(b._id)
-        .then(lists => this.lists = lists);
+      this.bService.getAllLists(b._id).then(lists => {
+        this.lists = lists;
+      });
     });
   }
 

@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy, OnInit, AfterViewInit, animate, state, trigger, style, transition } from '@angular/core';
+import { ChangeDetectionStrategy, OnInit, AfterViewInit, animate, state, trigger, style, transition } from '@angular/core';
+import { BaseComponent } from './decorators/base.component';
 
 import { Board } from './models/board';
 
@@ -14,7 +15,7 @@ if(isElectron) {
 }
 */
 
-@Component({
+@BaseComponent({
   moduleId:       module.id,
   selector:       'app-root',
   templateUrl:    'app.component.html',
