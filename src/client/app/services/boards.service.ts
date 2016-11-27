@@ -1,6 +1,6 @@
 declare var PouchDB: any;
 
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Board } from '../models/board';
 import { List } from '../models/list';
 import { Card } from '../models/card';
@@ -41,19 +41,6 @@ export class BoardsService {
 
   getAllCards(list_id: string): Promise<Card[]> {
     return new Promise(res => this.retrieveAllCards(list_id, res));
-  }
-
-  newBoard(name: string): Board {
-    console.log(`Creating new board '${name}'`);
-    let newBoard: Board = Board.createBoard(name);
-
-    this.boardsDB.put(newBoard).then(() => 
-      this.retrieveAllBoards(boards => 
-        this.updateCallbacks.forEach(c => c(boards))
-      )
-    );
-
-    return newBoard;
   }
 
   subscribe(callback: Function) {

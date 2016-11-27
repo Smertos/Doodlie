@@ -29,6 +29,8 @@
     cursor: pointer;
     display: list-item;
     box-sizing: border-box;
+    transition: 0.2s ease-out;
+    list-style-type: none;
 }
 
 :host div md-card span {

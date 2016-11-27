@@ -41,6 +41,7 @@ export class ProjectConfig extends SeedAdvancedConfig {
     this.SYSTEM_CONFIG_DEV.paths['@angular2-material/input'] = `${this.NPM_BASE}@angular2-material/input/input.umd.js`;
     this.SYSTEM_CONFIG_DEV.paths['@angular2-material/list'] = `${this.NPM_BASE}@angular2-material/list/list.umd.js`;
     this.SYSTEM_CONFIG_DEV.paths['@angular2-material/toolbar'] = `${this.NPM_BASE}@angular2-material/toolbar/toolbar.umd.js`;
+    this.SYSTEM_CONFIG_DEV.paths['@ngrx/store-devtools'] = `${this.NPM_BASE}@ngrx/store-devtools/bundles/store-devtools.min.umd.js`;
 
   }
 

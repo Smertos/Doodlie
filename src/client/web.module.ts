@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { TranslateLoader } from 'ng2-translate';
 
@@ -24,6 +25,10 @@ import { WrapperComponent } from './app/wrapper/wrapper.component';
 
 import { BoardsService } from './app/services/boards.service';
 
+import { boards } from './app/reducers/board.reducer';
+
+import { BoardsEffects } from './app/effects/boards.effects';
+
 declare var window, console;
 
 // For AoT compilation to work
@@ -39,9 +44,9 @@ export function cons() {
   imports: [
     BrowserModule,
     FormsModule,
-    StoreModule.provideStore({
-      /* reducerName: reducerFunc */
-    }),
+    StoreModule.provideStore(boards),
+    StoreDevtoolsModule.instrumentOnlyWithExtension(),
+    EffectsModule.run(BoardsEffects),
     MdCoreModule,
     MdButtonModule,
     MdCardModule,
