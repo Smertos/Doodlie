@@ -28,14 +28,21 @@ export class Board implements IBoard {
         this.createTime = createTime;
     }
 
-    static createBoard(name: string) {
+    static createBoard(name: string): Promise<any> {
         let newBoard: Board = new Board('board-' + randString(), name);
-        db.put(newBoard);
-        return newBoard;
+        return db.put(newBoard);
     }
 
-    static from(b: { _id: string, name: string, list_ids: string[], createTime: number }) {
-        return new Board(b._id, b.name, b.list_ids, b.createTime);
+    static from(b: { _id: string, name: string, list_ids: string[], createTime: number, _rev: string }) {
+        return new Board(b._id, b.name, b.list_ids, b.createTime, b._rev);
+    }
+
+    update() {
+        return db.put(this);
+    }
+
+    delete() {
+        return db.remove(this._id, this._rev);
     }
 
     createList(name: string) {

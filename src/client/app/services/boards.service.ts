@@ -43,6 +43,10 @@ export class BoardsService {
     return new Promise(res => this.retrieveAllCards(list_id, res));
   }
 
+  getBoard(_id: string): Promise<Board> {
+    return this.boardsDB.get(_id);
+  }
+
   subscribe(callback: Function) {
     this.updateCallbacks.push(callback);
   }
