@@ -1,5 +1,5 @@
 <div>
-	<md-card *ngFor="let board of boards | async" (click)="openBoard($event, board.name)">
+	<md-card *ngFor="let board of boards | async" (click)="openBoard($event, board._id)">
 		<span>{{ board.name.length > 22 ? board.name.slice(0, 20) + '...' : board.name }}</span>
 		<a (click)="openBoardProps($event, board)"><i class="mdi mdi-dots-vertical"></i></a>
 	</md-card>

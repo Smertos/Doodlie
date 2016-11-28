@@ -46,9 +46,11 @@ export class Board implements IBoard {
     }
 
     createList(name: string) {
-        var newList = List.createList(this._id, name);
-        this.list_ids.push(newList._id);
-        return newList;
+        return List
+            .createList(this._id, name)
+            .then(
+                (res: { id: string }) => this.list_ids.push(res.id)
+            ).then(() => this.update());
     }
 
     addList(list: List) {

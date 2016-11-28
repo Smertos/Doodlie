@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Http } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-import { StoreModule } from '@ngrx/store';
+import { StoreModule, combineReducers,  } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -25,9 +25,10 @@ import { WrapperComponent } from './app/wrapper/wrapper.component';
 
 import { BoardsService } from './app/services/boards.service';
 
-import { boards } from './app/reducers/board.reducer';
+import { appReducer, initialAppState } from './app/states/app.state';
 
-import { BoardsEffects } from './app/effects/boards.effects';
+import { BoardEffects } from './app/effects/board.effects';
+import { ListEffects } from './app/effects/list.effects';
 
 declare var window, console;
 
@@ -44,9 +45,10 @@ export function cons() {
   imports: [
     BrowserModule,
     FormsModule,
-    StoreModule.provideStore(boards),
+    StoreModule.provideStore(appReducer, initialAppState),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
-    EffectsModule.run(BoardsEffects),
+    EffectsModule.run(BoardEffects),
+    EffectsModule.run(ListEffects),
     MdCoreModule,
     MdButtonModule,
     MdCardModule,

@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { BaseComponent } from '../../decorators/base.component';
 import { BoardsService } from '../../services/boards.service';
 import { Board } from '../../models/board';
-import { BoardsState } from '../../states/board.state';
+import { IAppState } from '../../states/app.state';
 
 import { BoardActions } from '../../reducers/board.reducer';
 
@@ -24,8 +24,8 @@ export class BoardsListComponent implements OnInit {
   @Output() openBoardPanel = new EventEmitter(true);
   boards: Observable<Board[]>;
 
-  constructor(private bService: BoardsService, private store: Store<BoardsState>) {
-    this.boards = this.store.select(state => _.sortBy(state.boards, ['createTime', 'name']));
+  constructor(private bService: BoardsService, private store: Store<IAppState>) {
+    this.boards = this.store.select(state => _.sortBy(state.board.boards, ['createTime', 'name']));
 
     this.store.dispatch({ type: BoardActions.INIT_BOARD });
   }
@@ -56,11 +56,13 @@ export class BoardsListComponent implements OnInit {
     PubSub.publish('app.openPrompt', {});
   }
 
-  openBoard(event: Event, name: string) {
+  openBoard(event: Event, _id: string) {
     event.stopPropagation();
-    console.log(`Opened board '${name}'`);
+    console.log(`Opened board with id '${_id}'`);
 
-    //PubSub.publish('board.loadBoard', this.boards.filter(e => e.name === name)[0]);
+    this.bService
+      .getBoard(_id)
+      .then(b => PubSub.publish('board.loadBoard', Board.from(b)));
     PubSub.publishSync('app.boardProps.hide', {});
     PubSub.publishSync('app.subTitle.hide', {});
     PubSub.publishSync('wrapper.boardOpen', {});
@@ -70,11 +72,11 @@ export class BoardsListComponent implements OnInit {
   openBoardProps(event, board) {
     event.stopPropagation();
     
-    //PubSub.publish('app.boardProps.show', board);
-    this.store.dispatch({
+    PubSub.publish('app.boardProps.show', board);
+    /*this.store.dispatch({
       type: BoardActions.DELETE_BOARD,
       payload: board._id
-    });
+    });*/
   }
 
 }

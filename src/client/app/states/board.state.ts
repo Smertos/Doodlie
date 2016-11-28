@@ -1,5 +1,10 @@
+import { Observable } from 'rxjs/Observable';
 import { Board } from '../models/board';
 
-export interface BoardsState {
-    boards: Board[];
+export interface IBoardState {
+    boards: Array<Board>;
+}
+
+export const initialState: IBoardState = {
+    boards: <Array<Board>>[]
 }

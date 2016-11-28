@@ -4,7 +4,7 @@
 </md-card>
 
 
-<md-card class="list" *ngFor="let list of lists">
+<md-card class="list" *ngFor="let list of lists | async">
     <span class="list-title">{{ list.name }}</span>
     <md-card class="card" *ngFor="let card of list.cards">
         <span class="title">{{ card.title }}</span>

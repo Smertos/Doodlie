@@ -47,6 +47,18 @@ export class BoardsService {
     return this.boardsDB.get(_id);
   }
 
+  getList(_id: string): Promise<List> {
+    return this.listsDB.get(_id);
+  }
+
+  getCard(_id: string): Promise<Card> {
+    return this.cardsDB.get(_id);
+  }
+
+  getTag(_id: string): Promise<Tag> {
+    return this.tagsDB.get(_id);
+  }
+
   subscribe(callback: Function) {
     this.updateCallbacks.push(callback);
   }

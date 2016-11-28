@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Board, IBoard } from '../models/board';
-import { BoardsState } from '../states/board.state';
+import { IBoardState } from '../states/board.state';
 
 export * from '../models/board';
 
@@ -28,16 +28,17 @@ export const BoardActions: IBoardActions = {
     OPERATION_FAILED_BOARD: 'OPERATION_FAILED_BOARD'
 };
 
-
-const initialState: BoardsState = {
+export const initialBoardState: IBoardState = {
     boards: []
 };
 
-export function boards(state: BoardsState = initialState, { type, payload } : Action) : BoardsState {
+export function board(state: IBoardState = initialBoardState, { type, payload } : Action) : IBoardState {
+    console.log('state', state);
+    console.log('payload', payload);
     switch (type) {
 
         case BoardActions.INITIALIZED_BOARD:
-            return Object.assign({}, state, { boards: state.boards.concat(payload) });
+            return Object.assign({}, state, { boards: payload });
 
         case BoardActions.ADDED_BOARD:
             return Object.assign({}, state, { boards: state.boards.concat(payload) });

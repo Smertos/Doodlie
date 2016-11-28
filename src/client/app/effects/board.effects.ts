@@ -16,7 +16,7 @@ import { BoardActions } from '../reducers/board.reducer';
 import { Board } from '../models/board';
 
 @Injectable()
-export class BoardsEffects {
+export class BoardEffects {
     constructor(private actions$: Actions, private bService: BoardsService) { }
 
     @Effect() init$ = this.actions$
