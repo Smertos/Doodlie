@@ -40,11 +40,13 @@ export class BoardComponent implements OnInit {
   }
 
   createList() {
-    console.log('New list name', this.newListName);
-    console.log('Board', this.board);
-    this.board.createList(this.newListName)
-      .then(() => console.log(`Created board with name ${this.newListName}`))
-      .then(() => this.newListName = '')
-      .catch(console.error);
+    this.store.dispatch({
+      type: ListActions.ADD_LIST,
+      payload: { 
+        parent_id: this.board._id,
+        name: this.newListName
+      }
+    });
+    this.newListName = '';
   }
 }

@@ -33,8 +33,6 @@ export const initialBoardState: IBoardState = {
 };
 
 export function board(state: IBoardState = initialBoardState, { type, payload } : Action) : IBoardState {
-    console.log('state', state);
-    console.log('payload', payload);
     switch (type) {
 
         case BoardActions.INITIALIZED_BOARD:

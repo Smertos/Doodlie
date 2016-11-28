@@ -40,29 +40,24 @@ export class ListEffects {
     @Effect() add$ = this.actions$
         .ofType(ListActions.ADD_LIST)
         .switchMap(
-            action => {
-                let promise = List.createList(action.payload.parent_id, action.payload._id);
-
-                return Observable
-                    .fromPromise(promise)
-                    .switchMap(
-                        (resp: { id: string }) =>
-                            Observable
-                                .fromPromise(this.bService.getList(resp.id))
-                                .map(
-                                    (list: List) => ({ 
-                                        type: ListActions.ADDED_LIST,
-                                        payload: List.from(list)
-                                    })
-                                ).catch(
-                                    err => Observable.of({
-                                        type: ListActions.OPERATION_FAILED_LIST,
-                                        payload: Object.assign({ error: err }, action)
-                                    })
-                                )
-                    )
-                    
-            }
+            action => Observable
+                .fromPromise(List.createList(action.payload.parent_id, action.payload.name))
+                .switchMap(
+                    (resp: { id: string }) =>
+                        Observable
+                            .fromPromise(this.bService.getList(resp.id))
+                            .map(
+                                (list: List) => ({ 
+                                    type: ListActions.ADDED_LIST,
+                                    payload: List.from(list)
+                                })
+                            ).catch(
+                                err => Observable.of({
+                                    type: ListActions.OPERATION_FAILED_LIST,
+                                    payload: Object.assign({ error: err }, action)
+                                })
+                            )
+                )
         );
 
     @Effect() update$ = this.actions$
