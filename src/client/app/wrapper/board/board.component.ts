@@ -1,4 +1,4 @@
-import { OnInit, Output, EventEmitter } from '@angular/core';
+import { OnInit, Output, EventEmitter, HostBinding, Input, ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
@@ -17,18 +17,26 @@ import { ListActions } from '../../reducers/list.reducer';
 })
 export class BoardComponent implements OnInit {
 
+  @HostBinding('class.shown') boardShown: boolean = false;
   @Output() closeBoardPanel = new EventEmitter(true);
   board: Board;
   lists: Observable<List[]>;
   newListName: string = '';
 
-  constructor(private bService: BoardsService, private store: Store<IAppState>) {
+  constructor(private bService: BoardsService, private store: Store<IAppState>, private cd: ChangeDetectorRef) {
     this.lists = this.store.select(state => state.list.lists);
   }
 
   ngOnInit() {
+    PubSub.subscribe('board', console.log);
+
+    PubSub.subscribe('board.open', () => this.boardShown = true);
+    PubSub.subscribe('board.close', () =>  {
+      this.boardShown = false;
+      this.cd.markForCheck();
+    });
+
     PubSub.subscribe('board.loadBoard', (ename: string, board: Board) => {
-      console.log(board);
       this.board = board;
 
       this.store.dispatch({

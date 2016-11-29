@@ -1,13 +1,17 @@
-<md-card class="list">
-    <md-input [(ngModel)]="newListName"></md-input>
-    <button md-raised-button (click)="createList()">CREATE LIST</button>
-</md-card>
+<div class="container">
 
-
-<md-card class="list" *ngFor="let list of lists | async">
-    <span class="list-title">{{ list.name }}</span>
-    <md-card class="card" *ngFor="let card of list.cards">
-        <span class="title">{{ card.title }}</span>
-        <span class="desc">{{ card.title }}</span>
+    <md-card class="list">
+        <md-input [(ngModel)]="newListName"></md-input>
+        <button md-raised-button (click)="createList()">CREATE LIST</button>
     </md-card>
-</md-card>
+
+
+    <md-card class="list" *ngFor="let list of lists | async">
+        <span class="list-title">{{ list.name }}</span>
+        <md-card class="card" *ngFor="let card of list.cards">
+            <span class="title">{{ card.title }}</span>
+            <span class="desc">{{ card.title }}</span>
+        </md-card>
+    </md-card>
+    
+</div>

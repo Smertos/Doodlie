@@ -86,8 +86,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
     PubSub.subscribe('app.boardProps.hide', () => this.sidePanShown = false);
 
-    PubSub.subscribe('wrapper.boardOpen', () => this.arrowShown = true);
-    PubSub.subscribe('wrapper.boardClose', () => this.arrowShown = false);
+    PubSub.subscribe('board.open', () => this.arrowShown = true);
+    PubSub.subscribe('board.close', () => this.arrowShown = false);
   }
 
   notClosePrompt(e) {
@@ -123,7 +123,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   back() {
-    PubSub.publish('wrapper.boardClose', {});
+    PubSub.publish('board.close', {});
     this.subTitle = 'Select your board';
   }
 

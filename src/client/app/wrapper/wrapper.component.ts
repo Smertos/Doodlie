@@ -1,6 +1,6 @@
 import 'pubsub-js';
 
-import { OnInit, HostBinding } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { BaseComponent } from '../decorators/base.component';
 import { BoardsService } from '../services/boards.service';
 
@@ -12,12 +12,8 @@ import { BoardsService } from '../services/boards.service';
 })
 export class WrapperComponent implements OnInit {
 
-  @HostBinding('class.opened') boardOpened: boolean = false;
-
   constructor(private boardsService: BoardsService) { }
 
-  ngOnInit() { 
-    PubSub.subscribe('wrapper.boardOpen', () => this.boardOpened = true);
-    PubSub.subscribe('wrapper.boardClose', () => this.boardOpened = false);
-  }
+  ngOnInit() { }
+  
 }

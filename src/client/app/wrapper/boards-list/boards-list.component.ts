@@ -31,23 +31,12 @@ export class BoardsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    /*
-    this.bService.subscribe(boards => this.boards = _.sortBy(boards, ['createTime', 'name']));
-    this.bService.getAllBoards().then(boards => {
-      this.boards = _.sortBy(boards, ['createTime', 'name']);
-    });
-    */
-
     PubSub.subscribe('app.promptSubmit', (en, { text: name }) => {
       this.store.dispatch({
         type: BoardActions.ADD_BOARD,
         payload: name
       });
-
-      //PubSub.publish('wrapper.boardOpen', {});
-      //PubSub.publish('board.loadBoard', board);
     });
-
   }
 
   newBoard(event: Event) {
@@ -62,11 +51,13 @@ export class BoardsListComponent implements OnInit {
 
     this.bService
       .getBoard(_id)
-      .then(b => PubSub.publish('board.loadBoard', Board.from(b)));
+      .then(b => {
+        PubSub.publish('board.loadBoard', Board.from(b));
+        PubSub.publishSync('board.open', {});
+        PubSub.publishSync('app.subTitle.show', { text: b.name });
+      });
     PubSub.publishSync('app.boardProps.hide', {});
     PubSub.publishSync('app.subTitle.hide', {});
-    PubSub.publishSync('wrapper.boardOpen', {});
-    PubSub.publishSync('app.subTitle.show', { text: name });
   }
 
   openBoardProps(event, board) {
