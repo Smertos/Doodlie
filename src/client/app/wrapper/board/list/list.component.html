@@ -1,0 +1,12 @@
+<header>
+    <span class="list-title">{{ list.name }}</span>
+</header>
+
+<div class="contaner">
+    <app-card *ngFor="let card of cards | async" [card]="card"></app-card>
+</div>
+
+
+<footer>
+    <app-new-card (newCard)="createCard($event)"></app-new-card>
+</footer>

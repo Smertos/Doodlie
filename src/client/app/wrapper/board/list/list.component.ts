@@ -1,6 +1,12 @@
 import { OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
+
 import { BaseComponent } from '../../../decorators/base.component';
+import { IAppState } from '../../../states/app.state';
 import { List } from '../../../models/list';
+import { Card } from '../../../models/card';
+import { CardActions } from '../../../reducers/card.reducer';
 
 @BaseComponent({
   moduleId:       module.id,
@@ -8,18 +14,32 @@ import { List } from '../../../models/list';
   templateUrl:    'list.component.html',
   styleUrls:      ['list.component.css']
 })
-export class BoardComponent implements OnInit {
+export class ListComponent implements OnInit {
 
   @Input() list: List;
-  newTitleName: string = '';
+  cards: Observable<Card[]>;
 
-  constructor() { }
+  constructor(private store: Store<IAppState>) {
+    this.cards = this.store.select(state => state.card.cards);
+  }
 
-  ngOnInit() { }
+  ngOnInit() {
 
-  createCard() {
-    console.log('New card title', this.newTitleName);
-    console.log('List', this.list);
-    this.list.createCard(this.newTitleName);
+    this.store.dispatch({
+      type: CardActions.LOAD_LIST_CARD,
+      payload: this.list._id
+    });
+
+  }
+
+  createCard(title) {
+    this.store.dispatch({
+      type: CardActions.ADD_CARD,
+      payload: {
+        parent_id: this.list._id,
+        title: title
+      }
+    });
+
   }
 }

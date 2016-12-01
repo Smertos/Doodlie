@@ -1,0 +1,41 @@
+:host {
+    display: inline-flex;
+    width: 275px;
+    margin: 0 40px;
+    vertical-align: top;
+    white-space: normal;
+    background-color: rgba(230, 230, 230, 0.8);
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+header, footer {
+    padding: 10px;
+}
+
+footer {
+    transition: 0.2s ease-in-out;
+    transition-property: background-color, color;
+    color: rgb(110, 110, 110);
+}
+
+.list-title {
+    color: rgb(56, 56, 56);
+    font-weight: 500;
+    font-size: 17px;
+    display: block;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+footer:hover {
+    background-color: rgba(210, 210, 210, 0.8);
+    cursor: pointer;
+    color: rgb(20, 20, 20);
+}

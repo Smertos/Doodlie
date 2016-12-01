@@ -21,6 +21,10 @@ import { MdToolbarModule } from '@angular2-material/toolbar';
 import { AppComponent } from './app/app.component';
 import { BoardsListComponent } from './app/wrapper/boards-list/boards-list.component';
 import { BoardComponent } from './app/wrapper/board/board.component';
+import { ListComponent } from './app/wrapper/board/list/list.component';
+import { NewListComponent } from './app/wrapper/board/new-list/new-list.component';
+import { CardComponent } from './app/wrapper/board/list/card/card.component';
+import { NewCardComponent } from './app/wrapper/board/list/new-card/new-card.component';
 import { WrapperComponent } from './app/wrapper/wrapper.component';
 
 import { BoardsService } from './app/services/boards.service';
@@ -29,16 +33,7 @@ import { appReducer, initialAppState } from './app/states/app.state';
 
 import { BoardEffects } from './app/effects/board.effects';
 import { ListEffects } from './app/effects/list.effects';
-
-declare var window, console;
-
-// For AoT compilation to work
-export function win() {
-  return window;
-}
-export function cons() {
-  return console;
-}
+import { CardEffects } from './app/effects/card.effects';
 
 //Our module
 @NgModule({
@@ -49,6 +44,7 @@ export function cons() {
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     EffectsModule.run(BoardEffects),
     EffectsModule.run(ListEffects),
+    EffectsModule.run(CardEffects),
     MdCoreModule,
     MdButtonModule,
     MdCardModule,
@@ -61,7 +57,11 @@ export function cons() {
     AppComponent,
     WrapperComponent,
     BoardsListComponent,
-    BoardComponent
+    BoardComponent,
+    ListComponent,
+    NewListComponent,
+    CardComponent,
+    NewCardComponent
   ],
   providers: [
     {

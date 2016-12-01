@@ -13,7 +13,7 @@
     transition: 0.2s ease-in-out;
     background: white;
     display: inline-block;
-
+    overflow-x: scroll;
 }
 
 :host.shown {
@@ -24,35 +24,5 @@
 
 .container {
     white-space: nowrap;
-}
-
-.list {
-    display: inline-block;
-    width: 200px;
-    margin: 0 40px;
-    vertical-align: top;
-    white-space: normal;
-}
-
-.list-title {
-    transform: rotate(-90deg) translateX(-45%) translateY(-750%);
-    direction: rtl;
-    word-break: normal;
-    color: gray;
-    font-weight: 100;
-    font-size: 17px;
-}
-
-.card {
-    
-}
-
-.title {
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.desc {
-    font-size: 16px;
-    font-weight: 300;
+		display: inline-block;
 }

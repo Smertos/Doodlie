@@ -1,0 +1,31 @@
+:host {
+    display: inline-block;
+    width: 275px;
+    margin: 0 40px;
+    vertical-align: top;
+    white-space: normal;
+    border-radius: 3px;
+    overflow: hidden;
+    color: rgb(80,80,80);
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: 0.2s ease-in-out;
+    transition-property: background-color, color;
+    cursor: pointer;
+}
+
+:host:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: rgb(20,20,20);
+}
+
+div {
+    padding: 15px;
+}
+
+md-input {
+    width: 100%;
+}
+
+div.sub-edit {
+    padding-bottom: 10px;
+}

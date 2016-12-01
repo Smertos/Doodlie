@@ -25,9 +25,9 @@ export class BoardEffects {
             action => Observable
                 .fromPromise(this.bService.getAllBoards())
                 .map(
-                    boards => ({ 
+                    boards => ({
                         type: BoardActions.INITIALIZED_BOARD,
-                        payload: boards.map(Board.from)
+                        payload: boards
                     })
                 ).catch(
                     err => Observable.of({
@@ -50,9 +50,9 @@ export class BoardEffects {
                             Observable
                                 .fromPromise(this.bService.getBoard(resp.id))
                                 .map(
-                                    (board: Board) => ({ 
+                                    (board: Board) => ({
                                         type: BoardActions.ADDED_BOARD,
-                                        payload: Board.from(board)
+                                        payload: board
                                     })
                                 ).catch(
                                     err => Observable.of({
@@ -70,14 +70,11 @@ export class BoardEffects {
         .switchMap(
             action => Observable
                 .fromPromise(this.bService.getBoard(action.payload))
-                .map(Board.from)
                 .switchMap(
                     (board: Board) => Observable
                         .fromPromise(board.update())
                         .map(
-                            () => ({ 
-                                type: BoardActions.UPDATED_BOARD
-                            })
+                            () => ({ type: BoardActions.UPDATED_BOARD })
                         ).catch(
                             err => Observable.of({
                                 type: BoardActions.OPERATION_FAILED_BOARD,
@@ -92,7 +89,6 @@ export class BoardEffects {
         .switchMap(
             action => Observable
                 .fromPromise(this.bService.getBoard(action.payload))
-                .map(Board.from)
                 .switchMap(
                     (board: Board) => Observable
                         .fromPromise(board.delete())

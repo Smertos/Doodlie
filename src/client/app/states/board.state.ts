@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs/Observable';
 import { Board } from '../models/board';
 
 export interface IBoardState {

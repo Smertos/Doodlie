@@ -11,49 +11,49 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/catch';
 
 import { BoardsService } from '../services/boards.service';
-import { ListActions } from '../reducers/list.reducer';
+import { CardActions } from '../reducers/card.reducer';
 
-import { List } from '../models/list';
+import { Card } from '../models/card';
 
 @Injectable()
-export class ListEffects {
+export class CardEffects {
     constructor(private actions$: Actions, private bService: BoardsService) { }
 
     @Effect() init$ = this.actions$
-        .ofType(ListActions.LOAD_BOARD_LIST)
+        .ofType(CardActions.LOAD_LIST_CARD)
         .switchMap(
             action => Observable
-                .fromPromise(this.bService.getAllLists(action.payload))
+                .fromPromise(this.bService.getAllCards(action.payload))
                 .map(
-                    lists => ({ 
-                        type: ListActions.LOADED_BOARD_LIST,
-                        payload: lists
+                    cards => ({ 
+                        type: CardActions.LOADED_LIST_CARD,
+                        payload: cards
                     })
                 ).catch(
                     err => Observable.of({
-                        type: ListActions.OPERATION_FAILED_LIST,
+                        type: CardActions.OPERATION_FAILED_CARD,
                         payload: Object.assign({ error: err }, action)
                     })
                 )
         );
 
     @Effect() add$ = this.actions$
-        .ofType(ListActions.ADD_LIST)
+        .ofType(CardActions.ADD_CARD)
         .switchMap(
             action => Observable
-                .fromPromise(List.createList(action.payload.parent_id, action.payload.name))
+                .fromPromise(Card.createCard(action.payload.parent_id, action.payload.title))
                 .switchMap(
                     (resp: { id: string }) =>
                         Observable
-                            .fromPromise(this.bService.getList(resp.id))
+                            .fromPromise(this.bService.getCard(resp.id))
                             .map(
-                                (list: List) => ({ 
-                                    type: ListActions.ADDED_LIST,
-                                    payload: list
+                                (card: Card) => ({ 
+                                    type: CardActions.ADDED_CARD,
+                                    payload: card
                                 })
                             ).catch(
                                 err => Observable.of({
-                                    type: ListActions.OPERATION_FAILED_LIST,
+                                    type: CardActions.OPERATION_FAILED_CARD,
                                     payload: Object.assign({ error: err }, action)
                                 })
                             )
@@ -61,20 +61,20 @@ export class ListEffects {
         );
 
     @Effect() update$ = this.actions$
-        .ofType(ListActions.UPDATE_LIST)
+        .ofType(CardActions.UPDATE_CARD)
         .switchMap(
             action => Observable
-                .fromPromise(this.bService.getList(action.payload))
+                .fromPromise(this.bService.getCard(action.payload))
                 .switchMap(
-                    (list: List) => Observable
-                        .fromPromise(list.update())
+                    (card: Card) => Observable
+                        .fromPromise(card.update())
                         .map(
                             () => ({ 
-                                type: ListActions.UPDATED_LIST
+                                type: CardActions.UPDATED_CARD
                             })
                         ).catch(
                             err => Observable.of({
-                                type: ListActions.OPERATION_FAILED_LIST,
+                                type: CardActions.OPERATION_FAILED_CARD,
                                 payload: Object.assign({ error: err }, action)
                             })
                         )
@@ -82,21 +82,21 @@ export class ListEffects {
         );
 
     @Effect() delete$ = this.actions$
-        .ofType(ListActions.DELETE_LIST)
+        .ofType(CardActions.DELETE_CARD)
         .switchMap(
             action => Observable
-                .fromPromise(this.bService.getList(action.payload))
+                .fromPromise(this.bService.getCard(action.payload))
                 .switchMap(
-                    (list: List) => Observable
-                        .fromPromise(list.delete())
+                    (card: Card) => Observable
+                        .fromPromise(card.delete())
                         .map(
                             (resp: { id: string }) => ({ 
-                                type: ListActions.DELETED_LIST,
+                                type: CardActions.DELETED_CARD,
                                 payload: resp.id
                             })
                         ).catch(
                             err => Observable.of({
-                                type: ListActions.OPERATION_FAILED_LIST,
+                                type: CardActions.OPERATION_FAILED_CARD,
                                 payload: Object.assign({ error: err }, action)
                             })
                         )

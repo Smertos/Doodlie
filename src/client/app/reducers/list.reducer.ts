@@ -1,5 +1,4 @@
 import { Action } from '@ngrx/store';
-import { Board, IBoard } from '../models/board';
 import { IListState } from '../states/list.state';
 
 export * from '../models/board';

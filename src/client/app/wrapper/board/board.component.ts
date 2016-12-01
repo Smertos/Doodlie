@@ -9,6 +9,8 @@ import { Board } from '../../models/board';
 import { List } from '../../models/list';
 import { ListActions } from '../../reducers/list.reducer';
 
+let _ = require('lodash');
+
 @BaseComponent({
   moduleId:       module.id,
   selector:       'app-board',
@@ -21,15 +23,12 @@ export class BoardComponent implements OnInit {
   @Output() closeBoardPanel = new EventEmitter(true);
   board: Board;
   lists: Observable<List[]>;
-  newListName: string = '';
 
   constructor(private bService: BoardsService, private store: Store<IAppState>, private cd: ChangeDetectorRef) {
-    this.lists = this.store.select(state => state.list.lists);
+    this.lists = this.store.select(state => _.sortBy(state.list.lists, ['createTime', 'name']).reverse());
   }
 
   ngOnInit() {
-    PubSub.subscribe('board', console.log);
-
     PubSub.subscribe('board.open', () => this.boardShown = true);
     PubSub.subscribe('board.close', () =>  {
       this.boardShown = false;
@@ -47,14 +46,14 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  createList() {
+  createList(newName) {
     this.store.dispatch({
       type: ListActions.ADD_LIST,
       payload: { 
         parent_id: this.board._id,
-        name: this.newListName
+        name: newName
       }
     });
-    this.newListName = '';
   }
+
 }

@@ -34,6 +34,47 @@
     list-style-type: none;
 }
 
+@media screen and (max-device-width: 480px) {
+    :host div md-card {
+        flex: 100%;
+    }
+}
+
+@media screen and (min-width: 768px){
+    :host div md-card {
+        flex: 30%;
+        max-width: 31%;
+    }
+}
+
+@media screen and (max-device-width: 768px){
+    :host div md-card {
+        flex: 30%;
+        max-width: 31%;
+    }
+}
+
+@media screen and (min-device-width: 768px){
+    :host div md-card {
+        flex: 20%;
+        max-width: 23.25%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    :host div md-card {
+        flex: 20%;
+        max-width: 23.25%; 
+    }
+}
+
+@media screen and (min-width: 1650px) {
+    :host div md-card {
+        flex: 18%;
+        max-width: 18.75%;
+    }
+}
+
 :host div md-card span {
     line-height: 190px;
     margin: 4px;

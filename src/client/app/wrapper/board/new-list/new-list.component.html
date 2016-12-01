@@ -1,0 +1,7 @@
+<div class="open" *ngIf="!editMode" (click)="editMode=true">Add new list...</div>
+<div class="edit" *ngIf="editMode">
+    <md-input [(ngModel)]="newName" placeholder="List Name"></md-input>
+    <div class="sub-edit">
+        <button md-button (click)="create()">Create</button> or <button md-button (click)="reset()">Cancel</button>
+    </div>
+</div>

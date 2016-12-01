@@ -10,7 +10,7 @@ console.log('isElectron', isElectron);
 
 
 /*
-if(isElectron) {
+if(isElectron) { //TODO: fix electron being not require-able, 'causer SystemJS replaces 'require' func
   ipcRenderer = require('electron').ipcRenderer;
 }
 */
