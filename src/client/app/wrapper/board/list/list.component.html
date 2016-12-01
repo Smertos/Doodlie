@@ -2,7 +2,7 @@
     <span class="list-title">{{ list.name }}</span>
 </header>
 
-<div class="contaner">
+<div class="container" [dragula]="'lists'">
     <app-card *ngFor="let card of cards | async" [card]="card"></app-card>
 </div>
 

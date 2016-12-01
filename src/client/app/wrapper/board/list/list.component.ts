@@ -1,6 +1,7 @@
 import { OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
+import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 import { BaseComponent } from '../../../decorators/base.component';
 import { IAppState } from '../../../states/app.state';
@@ -19,8 +20,10 @@ export class ListComponent implements OnInit {
   @Input() list: List;
   cards: Observable<Card[]>;
 
-  constructor(private store: Store<IAppState>) {
+  constructor(private store: Store<IAppState>, private ds: DragulaService) {
     this.cards = this.store.select(state => state.card.cards);
+
+    ds.drag.subscribe(console.log);
   }
 
   ngOnInit() {

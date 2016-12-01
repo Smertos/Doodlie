@@ -32,16 +32,29 @@ export class ProjectConfig extends SeedAdvancedConfig {
 
     if(this.TARGET_DESKTOP) this.NPM_BASE = '../..' + this.NPM_BASE;
 
-    // Add other import paths to system.js config
-    this.SYSTEM_CONFIG_DEV.paths['pubsub-js'] = `${this.NPM_BASE}pubsub-js/src/pubsub.js`
-    this.SYSTEM_CONFIG_DEV.paths['@angular2-material/button'] = `${this.NPM_BASE}@angular2-material/button/button.umd.js`;
-    this.SYSTEM_CONFIG_DEV.paths['@angular2-material/card'] = `${this.NPM_BASE}@angular2-material/card/card.umd.js`;
-    this.SYSTEM_CONFIG_DEV.paths['@angular2-material/core'] = `${this.NPM_BASE}@angular2-material/core/core.umd.js`;
-    this.SYSTEM_CONFIG_DEV.paths['@angular2-material/grid-list'] = `${this.NPM_BASE}@angular2-material/grid-list/grid-list.umd.js`;
-    this.SYSTEM_CONFIG_DEV.paths['@angular2-material/input'] = `${this.NPM_BASE}@angular2-material/input/input.umd.js`;
-    this.SYSTEM_CONFIG_DEV.paths['@angular2-material/list'] = `${this.NPM_BASE}@angular2-material/list/list.umd.js`;
-    this.SYSTEM_CONFIG_DEV.paths['@angular2-material/toolbar'] = `${this.NPM_BASE}@angular2-material/toolbar/toolbar.umd.js`;
-    this.SYSTEM_CONFIG_DEV.paths['@ngrx/store-devtools'] = `${this.NPM_BASE}@ngrx/store-devtools/bundles/store-devtools.min.umd.js`;
+    // Development
+    this.SYSTEM_CONFIG.paths['pubsub-js'] = `${this.NPM_BASE}pubsub-js/src/pubsub.js`
+    this.SYSTEM_CONFIG.paths['@angular2-material/button'] = `${this.NPM_BASE}@angular2-material/button/button.umd.js`;
+    this.SYSTEM_CONFIG.paths['@angular2-material/card'] = `${this.NPM_BASE}@angular2-material/card/card.umd.js`;
+    this.SYSTEM_CONFIG.paths['@angular2-material/core'] = `${this.NPM_BASE}@angular2-material/core/core.umd.js`;
+    this.SYSTEM_CONFIG.paths['@angular2-material/grid-list'] = `${this.NPM_BASE}@angular2-material/grid-list/grid-list.umd.js`;
+    this.SYSTEM_CONFIG.paths['@angular2-material/input'] = `${this.NPM_BASE}@angular2-material/input/input.umd.js`;
+    this.SYSTEM_CONFIG.paths['@angular2-material/list'] = `${this.NPM_BASE}@angular2-material/list/list.umd.js`;
+    this.SYSTEM_CONFIG.paths['@angular2-material/toolbar'] = `${this.NPM_BASE}@angular2-material/toolbar/toolbar.umd.js`;
+    this.SYSTEM_CONFIG.paths['@ngrx/store-devtools'] = `${this.NPM_BASE}@ngrx/store-devtools/bundles/store-devtools.min.umd.js`;
+    this.SYSTEM_CONFIG.paths['dragula'] = `${this.APP_BASE}node_modules/dragula/dist/dragula.min`;
+
+    // Production
+    this.SYSTEM_BUILDER_CONFIG.paths['pubsub-js'] = `pubsub-js/src/pubsub.js`
+    this.SYSTEM_BUILDER_CONFIG.paths['@angular2-material/button'] = `@angular2-material/button/button.umd.js`;
+    this.SYSTEM_BUILDER_CONFIG.paths['@angular2-material/card'] = `@angular2-material/card/card.umd.js`;
+    this.SYSTEM_BUILDER_CONFIG.paths['@angular2-material/core'] = `@angular2-material/core/core.umd.js`;
+    this.SYSTEM_BUILDER_CONFIG.paths['@angular2-material/grid-list'] = `@angular2-material/grid-list/grid-list.umd.js`;
+    this.SYSTEM_BUILDER_CONFIG.paths['@angular2-material/input'] = `@angular2-material/input/input.umd.js`;
+    this.SYSTEM_BUILDER_CONFIG.paths['@angular2-material/list'] = `@angular2-material/list/list.umd.js`;
+    this.SYSTEM_BUILDER_CONFIG.paths['@angular2-material/toolbar'] = `@angular2-material/toolbar/toolbar.umd.js`;
+    this.SYSTEM_BUILDER_CONFIG.paths['@ngrx/store-devtools'] = `@ngrx/store-devtools/bundles/store-devtools.min.umd.js`;
+    this.SYSTEM_BUILDER_CONFIG.paths['dragula'] = `node_modules/dragula/dist/dragula.min.js`;
 
   }
 

@@ -21,6 +21,7 @@ export class List implements IList {
     _rev: string;
     name: string;
     card_ids: string[];
+    createTime: number;
 
     constructor(parent_id: string, _id: string, name: string, card_ids: string[] = [], createTime: number = Date.now(), _rev: string = undefined) {
         this.parent_id = parent_id;
@@ -47,9 +48,11 @@ export class List implements IList {
     }
 
     createCard(name: string, desc: string = '') {
-        var newCard = Card.createCard(this._id, name);
-        this.card_ids.push(newCard._id);
-        return this;
+
+        return Card.createCard(this._id, name)
+                .then(
+                    (res: { id: string }) => this.card_ids.push(res.id)
+                ).then(() => this.update());
     }
 
     addCard(card: Card) {

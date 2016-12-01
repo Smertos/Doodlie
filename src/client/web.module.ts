@@ -18,6 +18,9 @@ import { MdInputModule } from '@angular2-material/input';
 import { MdListModule } from '@angular2-material/list';
 import { MdToolbarModule } from '@angular2-material/toolbar';
 
+//If you see an error 'Cannon find module', just ignore it. I'm to lazy to make types by myself :b
+import { DragulaModule } from 'ng2-dragula/ng2-dragula';
+
 import { AppComponent } from './app/app.component';
 import { BoardsListComponent } from './app/wrapper/boards-list/boards-list.component';
 import { BoardComponent } from './app/wrapper/board/board.component';
@@ -52,6 +55,7 @@ import { CardEffects } from './app/effects/card.effects';
     MdInputModule,
     MdListModule,
     MdToolbarModule,
+    DragulaModule
   ],
   declarations: [
     AppComponent,
