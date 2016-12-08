@@ -17,7 +17,8 @@
 	display: flex;
 	justify-content: space-between;
 	z-index: 10;
-	position: relative;
+	position: absolute;
+	top: 0;
 	box-shadow: 0 0 2px #000;
 }
 
@@ -47,6 +48,7 @@
 .window-controls div i {
 	color: #fafafa;
 	margin: 0 5px;
+	transition: 0.25s ease-in-out;
 }
 
 .window-controls div:first-child {
@@ -59,6 +61,11 @@
 	line-height: 32px;
 }
 
+
+.window-controls div:hover i {
+	color: deepskyblue;
+}
+
 .window-controls div:last-child:hover i {
 	color: red;
 }
@@ -67,12 +74,14 @@
 	height: 30px;
 	display: flex;
 	z-index: 5;
-	position: relative;
+	position: absolute;
 	transition: top 0.3s ease-in-out;
 	padding: 0 20px;
 	justify-content: space-between;
 	background: darkturquoise;
 	box-shadow: 0 0 4px #000;
+	cursor: default;
+	margin-top: 50px;
 }
 
 #status-block span {
@@ -127,11 +136,11 @@
 }
 
 #side-pan {
-	width: 400px;
+	width: 300px;
 	height: calc(100% - 50px);
 	position: absolute;
 	z-index: 6;
-	top: 80px;
+	top: 50px;
 	right: 0;
 	background: white;
 	transition: right 0.3s ease-in-out;

@@ -1,19 +1,16 @@
 import { ChangeDetectionStrategy, OnInit, AfterViewInit, animate, state, trigger, style, transition } from '@angular/core';
-import { BaseComponent } from './decorators/base.component';
+import { BaseComponent } from '../../decorators/base.component';
 
-import { Board } from './models/board';
+import { Board } from '../../models/board';
 
-let isElectron = window.require !== void 0;
-var ipcRenderer;
+var ipcRenderer, isElectron = String('<%= TARGET_DESKTOP %>') === 'true';
 
 console.log('isElectron', isElectron);
 
-
-/*
 if(isElectron) { //TODO: fix electron being not require-able, 'causer SystemJS replaces 'require' func
   ipcRenderer = require('electron').ipcRenderer;
 }
-*/
+
 
 @BaseComponent({
   moduleId:       module.id,
@@ -23,22 +20,12 @@ if(isElectron) { //TODO: fix electron being not require-able, 'causer SystemJS r
   changeDetection: ChangeDetectionStrategy.Default,
   animations: [
 
-    trigger('subTitleState', [
-      state('true', style({
-        top: '0px'
-      })),
-      state('false', style({
-        top: '-30px'
-      })),
-      transition('* => *', animate('200ms'))
-    ]),
-
     trigger('subPanState', [
       state('true', style({
         right: '0px'
       })),
       state('false', style({
-        right: '-400px'
+        right: '-310px'
       })),
       transition('* => *', animate('200ms'))
     ]),
@@ -63,7 +50,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   promptText: string = '';
 
   winControlsDisplay: string = '';
-  subTitleShown: boolean = false;
 
   sidePanBoardName: string = '';
   sidePanShown: boolean = false;
@@ -74,11 +60,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.winControlsDisplay = isElectron ? 'flex' : 'none';
 
     PubSub.subscribe('app.openPrompt', () => this.showPrompt = true);
-    PubSub.subscribe('app.subTitle.show', (en: string, { text: t }) => {
-      this.subTitle = t;
-      this.subTitleShown = true;
-    });
-    PubSub.subscribe('app.subTitle.hide', () => this.subTitleShown = false);
+    PubSub.subscribe('app.subTitle', (en: string, { text: t }) => this.subTitle = t);
 
     PubSub.subscribe('app.boardProps.show', (en: string, board: Board) => {
       this.sidePanBoardName = board.name;
@@ -117,7 +99,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     loaderStyle.opacity = '0';
     setTimeout(() => {
       loaderStyle.display = 'none';
-      this.subTitleShown = true;
       //statusBarStyle.top = '0px';
     }, 900);
   }
@@ -129,18 +110,21 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   minimize() {
     if(isElectron) {
+      console.log('Minimizing...');
       ipcRenderer.send('minimize');
     }
   }
 
   maximize() {
     if(isElectron) {
+      console.log('Maximizing...');
       ipcRenderer.send('maximize');
     }
   }
 
   close() {
     if(isElectron) {
+      console.log('Exiting...');
       ipcRenderer.send('exit');
     } 
   }

@@ -20,13 +20,13 @@ export class ListEffects {
     constructor(private actions$: Actions, private bService: BoardsService) { }
 
     @Effect() init$ = this.actions$
-        .ofType(ListActions.LOAD_BOARD_LIST)
+        .ofType(ListActions.INIT_LIST)
         .switchMap(
             action => Observable
-                .fromPromise(this.bService.getAllLists(action.payload))
+                .fromPromise(this.bService.getAllLists())
                 .map(
                     lists => ({ 
-                        type: ListActions.LOADED_BOARD_LIST,
+                        type: ListActions.INITIALIZED_LIST,
                         payload: lists
                     })
                 ).catch(

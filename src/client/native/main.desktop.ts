@@ -18,7 +18,9 @@ app.on('ready', () => {
   //Initialize new window
   mainWindow = new BrowserWindow({
     width: 800,
+    minWidth: 800,
     height: 600,
+    minHeight: 600,
     frame: false
   });
 
@@ -37,16 +39,29 @@ app.on('ready', () => {
   });
 
   mainWindow.webContents.on('minimize', () => {
-    if(mainWindow.isMinimized()) mainWindow.restore();
-    else mainWindow.minimize
+    if(mainWindow.isMinimized()) {
+      mainWindow.restore();
+    console.log('Got request for:', 'restore');
+    }
+    else {
+      mainWindow.minimize();
+    console.log('Got request for:', 'minimize');
+    }
   });
 
   mainWindow.webContents.on('maximize', () => {
-    if(mainWindow.isMaximized) mainWindow.minimize();
-    else mainWindow.maximize();
+    if(mainWindow.isMaximized) {
+      mainWindow.minimize();
+    console.log('Got request for:', 'minimize');
+    }
+    else {
+      mainWindow.maximize();
+    console.log('Got request for:', 'maximize');
+    }
   });
 
   mainWindow.webContents.once('close', () => {
+    console.log('Got request for:', 'close');
     mainWindow.close();
   });
 

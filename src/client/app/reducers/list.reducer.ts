@@ -6,8 +6,8 @@ export * from '../models/board';
 export interface IListActions {
     ADD_LIST: string,
     ADDED_LIST: string,
-    LOAD_BOARD_LIST: string,
-    LOADED_BOARD_LIST: string,
+    INIT_LIST: string,
+    INITIALIZED_LIST: string,
     UPDATE_LIST: string,
     UPDATED_LIST: string,
     DELETE_LIST: string,
@@ -18,8 +18,8 @@ export interface IListActions {
 export const ListActions: IListActions = {
     ADD_LIST: 'ADD_LIST',
     ADDED_LIST: 'ADDED_LIST',
-    LOAD_BOARD_LIST: 'LOAD_BOARD_LIST',
-    LOADED_BOARD_LIST: 'LOADED_BOARD_LIST',
+    INIT_LIST: 'INIT_LIST',
+    INITIALIZED_LIST: 'INITIALIZED_LIST',
     UPDATE_LIST: 'UPDATE_LIST',
     UPDATED_LIST: 'UPDATED_LIST',
     DELETE_LIST: 'DELETE_LIST',
@@ -34,7 +34,7 @@ export const initialListState: IListState = {
 export function list(state: IListState = initialListState, { type, payload } : Action) : IListState {
     switch (type) {
 
-        case ListActions.LOADED_BOARD_LIST:
+        case ListActions.INITIALIZED_LIST:
             return Object.assign({}, state, { lists: payload });
 
         case ListActions.ADDED_LIST:
@@ -47,6 +47,7 @@ export function list(state: IListState = initialListState, { type, payload } : A
             console.error('Action execution failed', payload)
             return state;
 
+        case ListActions.INIT_LIST:
         case ListActions.ADD_LIST:
         case ListActions.UPDATE_LIST:
         case ListActions.UPDATED_LIST:

@@ -20,13 +20,13 @@ export class CardEffects {
     constructor(private actions$: Actions, private bService: BoardsService) { }
 
     @Effect() init$ = this.actions$
-        .ofType(CardActions.LOAD_LIST_CARD)
+        .ofType(CardActions.INIT_CARD)
         .switchMap(
             action => Observable
-                .fromPromise(this.bService.getAllCards(action.payload))
+                .fromPromise(this.bService.getAllCards())
                 .map(
                     cards => ({ 
-                        type: CardActions.LOADED_LIST_CARD,
+                        type: CardActions.INITIALIZED_CARD,
                         payload: cards
                     })
                 ).catch(
@@ -63,43 +63,34 @@ export class CardEffects {
     @Effect() update$ = this.actions$
         .ofType(CardActions.UPDATE_CARD)
         .switchMap(
-            action => Observable
-                .fromPromise(this.bService.getCard(action.payload))
-                .switchMap(
-                    (card: Card) => Observable
-                        .fromPromise(card.update())
-                        .map(
-                            () => ({ 
-                                type: CardActions.UPDATED_CARD
-                            })
-                        ).catch(
-                            err => Observable.of({
-                                type: CardActions.OPERATION_FAILED_CARD,
-                                payload: Object.assign({ error: err }, action)
-                            })
-                        )
+            (action: { type: string, payload: Card }) => Observable
+                .fromPromise(action.payload.update())
+                .map(
+                    () => ({ 
+                        type: CardActions.UPDATED_CARD
+                    })
+                ).catch(
+                    err => Observable.of({
+                        type: CardActions.OPERATION_FAILED_CARD,
+                        payload: Object.assign({ error: err }, action)
+                    })
                 )
         );
 
     @Effect() delete$ = this.actions$
         .ofType(CardActions.DELETE_CARD)
         .switchMap(
-            action => Observable
-                .fromPromise(this.bService.getCard(action.payload))
-                .switchMap(
-                    (card: Card) => Observable
-                        .fromPromise(card.delete())
-                        .map(
-                            (resp: { id: string }) => ({ 
-                                type: CardActions.DELETED_CARD,
-                                payload: resp.id
-                            })
-                        ).catch(
-                            err => Observable.of({
-                                type: CardActions.OPERATION_FAILED_CARD,
-                                payload: Object.assign({ error: err }, action)
-                            })
-                        )
+            (action: { type: string, payload: Card }) => Observable
+                .fromPromise(action.payload.delete())
+                .map(
+                    () => ({ 
+                        type: CardActions.DELETED_CARD
+                    })
+                ).catch(
+                    err => Observable.of({
+                        type: CardActions.OPERATION_FAILED_CARD,
+                        payload: Object.assign({ error: err }, action)
+                    })
                 )
         );
 }

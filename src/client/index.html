@@ -44,6 +44,16 @@
   <!-- inject:js -->
   <!-- endinject -->
 
+  <% if (TARGET_DESKTOP) { %>
+  <script>
+    System.set('electron', System.newModule(require('electron')));
+  </script>
+  <% } else { %>
+  <script>
+    System.set('electron', System.newModule({}));
+  </script>
+  <% } %>
+
   <% if (ENV === 'dev') { %>
   <script>
   System.import('<%= BOOTSTRAP_MODULE %>')

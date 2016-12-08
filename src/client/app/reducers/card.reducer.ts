@@ -6,8 +6,8 @@ export * from '../models/board';
 export interface ICardActions {
     ADD_CARD: string,
     ADDED_CARD: string,
-    LOAD_LIST_CARD: string,
-    LOADED_LIST_CARD: string,
+    INIT_CARD: string,
+    INITIALIZED_CARD: string,
     UPDATE_CARD: string,
     UPDATED_CARD: string,
     DELETE_CARD: string,
@@ -18,8 +18,8 @@ export interface ICardActions {
 export const CardActions: ICardActions = {
     ADD_CARD: 'ADD_CARD',
     ADDED_CARD: 'ADDED_CARD',
-    LOAD_LIST_CARD: 'LOAD_LIST_CARD',
-    LOADED_LIST_CARD: 'LOADED_LIST_CARD',
+    INIT_CARD: 'INIT_CARD',
+    INITIALIZED_CARD: 'INITIALIZED_CARD',
     UPDATE_CARD: 'UPDATE_CARD',
     UPDATED_CARD: 'UPDATED_CARD',
     DELETE_CARD: 'DELETE_CARD',
@@ -34,7 +34,7 @@ export const initialCardState: ICardState = {
 export function card(state: ICardState = initialCardState, { type, payload } : Action) : ICardState {
     switch (type) {
 
-        case CardActions.LOADED_LIST_CARD:
+        case CardActions.INITIALIZED_CARD:
             return Object.assign({}, state, { cards: payload });
 
         case CardActions.ADDED_CARD:
@@ -47,6 +47,7 @@ export function card(state: ICardState = initialCardState, { type, payload } : A
             console.error('Action execution failed', payload)
             return state;
 
+        case CardActions.INIT_CARD:
         case CardActions.ADD_CARD:
         case CardActions.UPDATE_CARD:
         case CardActions.UPDATED_CARD:

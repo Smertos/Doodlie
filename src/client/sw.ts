@@ -1,1 +1,1 @@
-console.log('Hello?');
+console.log('dummy service worker at your service :-b');

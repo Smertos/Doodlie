@@ -1,4 +1,4 @@
-import { OnInit, Output, EventEmitter, HostBinding, Input, ChangeDetectorRef } from '@angular/core';
+import { OnInit, Output, EventEmitter, HostBinding, ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
@@ -12,10 +12,10 @@ import { ListActions } from '../../reducers/list.reducer';
 let _ = require('lodash');
 
 @BaseComponent({
-  moduleId:       module.id,
-  selector:       'app-board',
-  templateUrl:    'board.component.html',
-  styleUrls:      ['board.component.css']
+  moduleId: module.id,
+  selector: 'app-board',
+  templateUrl: 'board.component.html',
+  styleUrls: ['board.component.css']
 })
 export class BoardComponent implements OnInit {
 
@@ -25,31 +25,33 @@ export class BoardComponent implements OnInit {
   lists: Observable<List[]>;
 
   constructor(private bService: BoardsService, private store: Store<IAppState>, private cd: ChangeDetectorRef) {
-    this.lists = this.store.select(state => _.sortBy(state.list.lists, ['createTime', 'name']).reverse());
+    this.lists = this.store.select(state =>
+      _.sortBy(state.list.lists.filter(e => e.parent_id === (this.board || { _id: '-' })._id), ['createTime'])
+    );
   }
 
   ngOnInit() {
-    PubSub.subscribe('board.open', () => this.boardShown = true);
-    PubSub.subscribe('board.close', () =>  {
+    PubSub.subscribe('board.open', () => {
+      this.boardShown = true;
+      this.cd.markForCheck();
+    });
+
+    PubSub.subscribe('board.close', () => {
       this.boardShown = false;
       this.cd.markForCheck();
     });
 
     PubSub.subscribe('board.loadBoard', (ename: string, board: Board) => {
       this.board = board;
-
-      this.store.dispatch({
-        type: ListActions.LOAD_BOARD_LIST,
-        payload: this.board._id
-      });
-
+      this.store.dispatch({ type: 'REFRESH' });
     });
+
   }
 
   createList(newName) {
     this.store.dispatch({
       type: ListActions.ADD_LIST,
-      payload: { 
+      payload: {
         parent_id: this.board._id,
         name: newName
       }

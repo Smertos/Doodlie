@@ -25,11 +25,11 @@ export class BoardsService {
     return this.retrieveAllBoards();
   }
 
-  getAllLists(board_id: string): Promise<List[]> {
+  getAllLists(board_id: string = '-1'): Promise<List[]> {
     return this.retrieveAllLists(board_id);
   }
 
-  getAllCards(list_id: string): Promise<Card[]> {
+  getAllCards(list_id: string = '-1'): Promise<Card[]> {
     return this.retrieveAllCards(list_id);
   }
 
@@ -66,23 +66,39 @@ export class BoardsService {
   }
 
   private retrieveAllLists(board_id: string) {
-    return this.listsDB.search({
-      query: board_id,
-      fields: ['parent_id'],
-      include_docs: true
-    })
-    .then(res => res.rows.map(e => List.from(e.doc)))
-    .catch(err => console.error(err));
+    if(board_id !== '-1') {
+      return this.listsDB.search({
+        query: board_id,
+        fields: ['parent_id'],
+        include_docs: true
+      })
+      .then(res => res.rows.map(e => List.from(e.doc)))
+      .catch(err => console.error(err));
+    } else {
+      return this.listsDB.allDocs({
+        include_docs: true
+      })
+      .then(res => res.rows.map(e => List.from(e.doc)))
+      .catch(err => console.error(err));
+    }
   }
 
   private retrieveAllCards(list_id: string) {
-    return this.cardsDB.search({
-      query: list_id,
-      fields: ['parent_id'],
-      include_docs: true
-    })
-    .then(res => res.rows.map(e => Card.from(e.doc)))
-    .catch(err => console.error(err));
+    if(list_id !== '-1') {
+      return this.cardsDB.search({
+        query: list_id,
+        fields: ['parent_id'],
+        include_docs: true
+      })
+      .then(res => res.rows.map(e => Card.from(e.doc)))
+      .catch(err => console.error(err));
+    } else {
+      return this.cardsDB.allDocs({
+        include_docs: true
+      })
+      .then(res => res.rows.map(e => Card.from(e.doc)))
+      .catch(err => console.error(err));
+    }
   }
 
 }

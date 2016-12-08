@@ -1,6 +1,5 @@
-import { OnInit, Input, Output, EventEmitter, animate, state, trigger, style, transition } from '@angular/core';
-import { BaseComponent } from '../../../decorators/base.component';
-import { List } from '../../../models/list';
+import { OnInit, Output, EventEmitter } from '@angular/core';
+import { BaseComponent } from '../../decorators/base.component';
 
 @BaseComponent({
   moduleId:       module.id,
@@ -15,7 +14,7 @@ export class NewListComponent implements OnInit {
   newName: string = '';
 
   constructor() { }
-
+  
   ngOnInit() { }
 
   reset() {
@@ -24,7 +23,7 @@ export class NewListComponent implements OnInit {
   }
 
   create() {
-    if(this.newName != '') {
+    if(this.newName !== '') {
       this.newList.emit(this.newName);
       this.editMode = false;
     }

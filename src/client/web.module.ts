@@ -21,14 +21,14 @@ import { MdToolbarModule } from '@angular2-material/toolbar';
 //If you see an error 'Cannon find module', just ignore it. I'm to lazy to make types by myself :b
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 
-import { AppComponent } from './app/app.component';
-import { BoardsListComponent } from './app/wrapper/boards-list/boards-list.component';
-import { BoardComponent } from './app/wrapper/board/board.component';
-import { ListComponent } from './app/wrapper/board/list/list.component';
-import { NewListComponent } from './app/wrapper/board/new-list/new-list.component';
-import { CardComponent } from './app/wrapper/board/list/card/card.component';
-import { NewCardComponent } from './app/wrapper/board/list/new-card/new-card.component';
-import { WrapperComponent } from './app/wrapper/wrapper.component';
+import { AppComponent } from './app/components/app/app.component';
+import { BoardsListComponent } from './app/components/boards-list/boards-list.component';
+import { BoardComponent } from './app/components/board/board.component';
+import { ListComponent } from './app/components/list/list.component';
+import { NewListComponent } from './app/components/new-list/new-list.component';
+import { CardComponent } from './app/components/card/card.component';
+import { NewCardComponent } from './app/components/new-card/new-card.component';
+import { WrapperComponent } from './app/components/wrapper/wrapper.component';
 
 import { BoardsService } from './app/services/boards.service';
 
