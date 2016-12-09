@@ -1,41 +1,30 @@
 <div class="title-pan z-depth-2">
 
-  <div class="title-p" (click)="back()">{{ appTitle }}</div>
+	<div class="title-p" (click)="back()">{{ appTitle }}</div>
 
-  <div class="window-controls" [style.display]="winControlsDisplay">
-    <div (click)="minimize()"><i class="mdi mdi-window-minimize"></i></div>
-    <div (click)="maximize()"><i class="mdi mdi-window-maximize" [class.mdi-window-maximize]="!maximized" [class.mdi-window-restore]="maximized"></i></div>
-    <div (click)="close()"><i class="mdi mdi-close"></i></div>
-  </div>
+	<div class="window-controls" [style.display]="winControlsDisplay">
+		<div (click)="minimize()"><i class="mdi mdi-window-minimize"></i></div>
+		<div (click)="maximize()"><i class="mdi mdi-window-maximize" [class.mdi-window-maximize]="!maximized" [class.mdi-window-restore]="maximized"></i></div>
+		<div (click)="close()"><i class="mdi mdi-close"></i></div>
+	</div>
 
 </div>
 
 <div id="status-block" class="z-depth-1">
-  <span>{{ subTitle }}</span>
-  <span id="arrow" [@arrowState]="arrowShown" (click)="back()"><i class="mdi mdi-arrow-left-bold"></i></span>
+	<span>{{ subTitle }}</span>
+	<span id="arrow" [@arrowState]="arrowShown" (click)="back()"><i class="mdi mdi-arrow-left-bold"></i></span>
 </div>
 
 <app-wrapper [class.blurry]="showPrompt"></app-wrapper>
 
 <div id="prompt-wrapper" *ngIf="showPrompt" (click)="closePrompt()">
 
-  <md-card (click)="notClosePrompt($event)">
-    <span id="prompt-title">Enter new board name:</span>
-    <md-input placeholder="Board Name..." [(ngModel)]="promptText">Board name</md-input>
-    <button md-raised-button color="primary" (click)="onPromptClick($event)">Create</button>
-  </md-card>
+	<md-card (click)="notClosePrompt($event)">
+		<span id="prompt-title">Enter new board name:</span>
+		<md-input focus placeholder="Board Name..." (keyup.enter)="onPromptClick()" (keyup.esc)="closePrompt()" [(ngModel)]="promptText">Board name</md-input>
+		<button md-raised-button color="primary" (click)="onPromptClick()">Create</button>
+	</md-card>
 
 </div>
 
-<div id="side-pan" [@subPanState]="sidePanShown">
-  <md-toolbar color="accent">
-    <span id="arrow" (click)="sidePanShown = false"><i class="mdi mdi-close"></i></span>
-    Options
-
-  </md-toolbar>
-
-  <div class="content">
-    <span id="side-board-name">{{ sidePanBoardName }}</span>
-  </div>
-  
-</div> 
+<app-side-pan [@subPanState]="sidePanShown" [board]="sidePanBoard"></app-side-pan>

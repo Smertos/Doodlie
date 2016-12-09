@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { Http } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-import { StoreModule, combineReducers,  } from '@ngrx/store';
+import { StoreModule  } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -22,6 +21,7 @@ import { MdToolbarModule } from '@angular2-material/toolbar';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 
 import { AppComponent } from './app/components/app/app.component';
+import { SidePanComponent } from './app/components/side-pan/side-pan.component';
 import { BoardsListComponent } from './app/components/boards-list/boards-list.component';
 import { BoardComponent } from './app/components/board/board.component';
 import { ListComponent } from './app/components/list/list.component';
@@ -29,6 +29,8 @@ import { NewListComponent } from './app/components/new-list/new-list.component';
 import { CardComponent } from './app/components/card/card.component';
 import { NewCardComponent } from './app/components/new-card/new-card.component';
 import { WrapperComponent } from './app/components/wrapper/wrapper.component';
+
+import { FocusDirective } from './app/directives/focus.directive';
 
 import { BoardsService } from './app/services/boards.service';
 
@@ -59,13 +61,15 @@ import { CardEffects } from './app/effects/card.effects';
   ],
   declarations: [
     AppComponent,
+    SidePanComponent,
     WrapperComponent,
     BoardsListComponent,
     BoardComponent,
     ListComponent,
     NewListComponent,
     CardComponent,
-    NewCardComponent
+    NewCardComponent,
+    FocusDirective
   ],
   providers: [
     {

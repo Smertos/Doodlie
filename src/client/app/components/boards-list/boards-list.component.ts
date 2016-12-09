@@ -67,10 +67,6 @@ export class BoardsListComponent implements OnInit {
     event.stopPropagation();
 
     PubSub.publish('app.boardProps.show', board);
-    /*this.store.dispatch({
-      type: BoardActions.DELETE_BOARD,
-      payload: board._id
-    });*/
   }
 
 }

@@ -14,7 +14,7 @@ export class NewListComponent implements OnInit {
   newName: string = '';
 
   constructor() { }
-  
+
   ngOnInit() { }
 
   reset() {
@@ -27,6 +27,6 @@ export class NewListComponent implements OnInit {
       this.newList.emit(this.newName);
       this.editMode = false;
     }
-      this.newName = '';   
+      this.newName = '';
   }
 }

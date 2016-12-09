@@ -1,5 +1,4 @@
 import { Action, ActionReducer, combineReducers } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
 
 import { IBoardState } from './board.state';
 import { IListState } from './list.state';
@@ -9,15 +8,10 @@ import { board, initialBoardState } from '../reducers/board.reducer';
 import { list, initialListState } from '../reducers/list.reducer';
 import { card, initialCardState } from '../reducers/card.reducer';
 
-import { Board } from '../models/board';
-import { List } from '../models/list';
-import { Card } from '../models/card';
-import { Tag } from '../models/tag';
-
 export interface IAppState {
-    board: IBoardState,
-    list: IListState,
-    card: ICardState
+    board: IBoardState;
+    list: IListState;
+    card: ICardState;
 }
 
 const reducers = { board, list, card };

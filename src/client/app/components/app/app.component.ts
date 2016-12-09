@@ -7,16 +7,16 @@ var ipcRenderer, isElectron = String('<%= TARGET_DESKTOP %>') === 'true';
 
 console.log('isElectron', isElectron);
 
-if(isElectron) { //TODO: fix electron being not require-able, 'causer SystemJS replaces 'require' func
+if (isElectron) {
   ipcRenderer = require('electron').ipcRenderer;
 }
 
 
 @BaseComponent({
-  moduleId:       module.id,
-  selector:       'app-root',
-  templateUrl:    'app.component.html',
-  styleUrls:      [ 'app.component.css' ],
+  moduleId: module.id,
+  selector: 'app-root',
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.css'],
   changeDetection: ChangeDetectionStrategy.Default,
   animations: [
 
@@ -51,8 +51,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   winControlsDisplay: string = '';
 
-  sidePanBoardName: string = '';
   sidePanShown: boolean = false;
+  sidePanBoard: Board = Board.getDummy();
 
   arrowShown: boolean = false;
 
@@ -63,7 +63,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     PubSub.subscribe('app.subTitle', (en: string, { text: t }) => this.subTitle = t);
 
     PubSub.subscribe('app.boardProps.show', (en: string, board: Board) => {
-      this.sidePanBoardName = board.name;
+      this.sidePanBoard = board;
       this.sidePanShown = true;
     });
     PubSub.subscribe('app.boardProps.hide', () => this.sidePanShown = false);
@@ -81,7 +81,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.promptText = '';
   }
 
-  onPromptClick(e) {
+  onPromptClick() {
 
     PubSub.publish('app.promptSubmit', { text: this.promptText });
     this.showPrompt = false;
@@ -109,24 +109,24 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   minimize() {
-    if(isElectron) {
+    if (isElectron) {
       console.log('Minimizing...');
       ipcRenderer.send('minimize');
     }
   }
 
   maximize() {
-    if(isElectron) {
+    if (isElectron) {
       console.log('Maximizing...');
       ipcRenderer.send('maximize');
     }
   }
 
   close() {
-    if(isElectron) {
+    if (isElectron) {
       console.log('Exiting...');
       ipcRenderer.send('exit');
-    } 
+    }
   }
 
- }
+}

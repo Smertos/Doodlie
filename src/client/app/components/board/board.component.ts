@@ -5,8 +5,11 @@ import { Store } from '@ngrx/store';
 import { BaseComponent } from '../../decorators/base.component';
 import { BoardsService } from '../../services/boards.service';
 import { IAppState } from '../../states/app.state';
+
 import { Board } from '../../models/board';
 import { List } from '../../models/list';
+
+import { BoardActions } from '../../reducers/board.reducer';
 import { ListActions } from '../../reducers/list.reducer';
 
 let _ = require('lodash');
@@ -44,6 +47,13 @@ export class BoardComponent implements OnInit {
     PubSub.subscribe('board.loadBoard', (ename: string, board: Board) => {
       this.board = board;
       this.store.dispatch({ type: 'REFRESH' });
+    });
+
+    PubSub.subscribe('board.delete', (ename: string, board_id: string) => {
+      this.store.dispatch({
+        type: BoardActions.DELETE_BOARD,
+        payload: board_id
+      });
     });
 
   }

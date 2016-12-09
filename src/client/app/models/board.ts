@@ -1,6 +1,6 @@
 declare var PouchDB: any;
 
-import { IList, List } from './list';
+import { List } from './list';
 import { randString } from '../utils';
 
 let db = new PouchDB('boards');
@@ -20,14 +20,6 @@ export class Board implements IBoard {
     list_ids: string[];
     createTime: number;
 
-    constructor(_id: string, name: string, list_ids: string[] = [], createTime: number = Date.now(), _rev: string = undefined) {
-        this._id = _id;
-        this._rev = _rev;
-        this.name = name;
-        this.list_ids = list_ids;
-        this.createTime = createTime;
-    }
-
     static createBoard(name: string): Promise<any> {
         let newBoard: Board = new Board('board-' + randString(), name);
         return db.put(newBoard);
@@ -35,6 +27,16 @@ export class Board implements IBoard {
 
     static from(b: { _id: string, name: string, list_ids: string[], createTime: number, _rev: string }) {
         return new Board(b._id, b.name, b.list_ids, b.createTime, b._rev);
+    }
+
+    static getDummy() { return new Board('null', 'Dummy Board'); }
+
+    constructor(_id: string, name: string, list_ids: string[] = [], createTime: number = Date.now(), _rev: string = undefined) {
+        this._id = _id;
+        this._rev = _rev;
+        this.name = name;
+        this.list_ids = list_ids;
+        this.createTime = createTime;
     }
 
     update() {
@@ -54,8 +56,8 @@ export class Board implements IBoard {
     }
 
     addList(list: List) {
-        if(typeof list != 'undefined')
+        if(typeof list !== 'undefined')
             this.list_ids.push(list._id);
-        return list
+        return list;
     }
 }

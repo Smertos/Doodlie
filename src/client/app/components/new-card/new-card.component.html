@@ -1,7 +1,7 @@
 <div class="new-card" *ngIf="!editMode" (click)="editMode=true">Add a new card...</div>
 <div class="edit" *ngIf="editMode">
-    <md-input [(ngModel)]="newTitle"></md-input>
-    <div class="sub-edit">
-        <button md-button (click)="create()">Create</button> or <button md-button (click)="reset()">Cancel</button>
-    </div>
+  <md-input focus (keyup.enter)="create()" (keyup.esc)="reset()" [(ngModel)]="newTitle"></md-input>
+  <div class="sub-edit">
+    <button md-button (click)="create()">Create</button> or <button md-button (click)="reset()">Cancel</button>
+  </div>
 </div>
