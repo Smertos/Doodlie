@@ -21,17 +21,23 @@
 	font-weight: 700;
 }
 
-:host md-toolbar {
+md-toolbar {
 	padding: 0 50px;
 }
 
-:host md-toolbar span {
+md-toolbar span {
 	position: absolute;
 	left: 16px;
 	cursor: pointer;
 }
 
-:host .content {
+.content {
 	flex-grow: 1;
 	padding: 20px;
+}
+
+.content button {
+  width: 100%;
+  background: #e53935;
+  color: white;
 }

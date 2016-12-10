@@ -35,41 +35,34 @@
     overflow: hidden;
 }
 
-@media screen and (max-device-width: 480px) {
+@media screen and (max-width: 640px) {
     :host div md-card {
         flex: 100%;
     }
 }
 
-@media screen and (min-width: 768px){
+@media screen and (min-device-width: 768px) and (min-width: 640px) {
     :host div md-card {
         flex: 30%;
         max-width: 31%;
     }
 }
 
-@media screen and (max-device-width: 768px){
-    :host div md-card {
-        flex: 30%;
-        max-width: 31%;
-    }
-}
-
-@media screen and (min-device-width: 768px){
+@media screen and (min-device-width: 960px) and (min-width: 768px) {
     :host div md-card {
         flex: 20%;
         max-width: 23.25%;
     }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-device-width: 1024px) and (min-width: 960px) {
     :host div md-card {
         flex: 20%;
-        max-width: 23.25%; 
+        max-width: 23.25%;
     }
 }
 
-@media screen and (min-width: 1650px) {
+@media screen and (min-device-width: 1440px) and (min-width: 1024px) {
     :host div md-card {
         flex: 18%;
         max-width: 18.75%;
@@ -88,6 +81,12 @@
     will-change: opacity;
     opacity: 0;
     transition: 0.2s opacity;
+}
+
+@media handheld {
+  :host div md-card a {
+    padding: 0.25;
+  }
 }
 
 :host div md-card:hover a {
