@@ -19,6 +19,7 @@ import { MdToolbarModule } from '@angular2-material/toolbar';
 
 //If you see an error 'Cannon find module', just ignore it. I'm to lazy to make types by myself :b
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { AppComponent } from './app/components/app/app.component';
 import { SidePanComponent } from './app/components/side-pan/side-pan.component';
@@ -57,7 +58,8 @@ import { CardEffects } from './app/effects/card.effects';
     MdInputModule,
     MdListModule,
     MdToolbarModule,
-    DragulaModule
+    DragulaModule,
+    SimpleNotificationsModule
   ],
   declarations: [
     AppComponent,

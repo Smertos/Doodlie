@@ -36,6 +36,7 @@ export class BoardsListComponent implements OnInit {
 
   ngOnInit() {
     PubSub.subscribe('app.promptSubmit', (en, { text: name }) => {
+      PubSub.publish('toast.success', { title: `Board '${name}' created!` });
       this.store.dispatch({
         type: BoardActions.ADD_BOARD,
         payload: name

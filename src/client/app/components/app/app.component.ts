@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, OnInit, AfterViewInit, animate, state, trigger, style, transition } from '@angular/core';
-import { BaseComponent } from '../../decorators/base.component';
+import { NotificationsService } from 'angular2-notifications';
 
+import { BaseComponent } from '../../decorators/base.component';
 import { Board } from '../../models/board';
 
 var ipcRenderer, isElectron = String('<%= TARGET_DESKTOP %>') === 'true';
@@ -56,7 +57,19 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   arrowShown: boolean = false;
 
-  constructor() {
+  toastOptions: any = {
+    position: ['bottom','right'],
+    timeOut: 3500,
+    showProgressBar: false,
+    pauseOnHover: false,
+    lastOnBottom: true,
+    clickToClose: true,
+    maxStack: 3,
+    preventDuplicates: true,
+    animate: 'fromRight'
+  };
+
+  constructor(private ns: NotificationsService) {
     this.winControlsDisplay = isElectron ? 'flex' : 'none';
 
     PubSub.subscribe('app.openPrompt', () => this.showPrompt = true);
@@ -70,6 +83,18 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     PubSub.subscribe('board.open', () => this.arrowShown = true);
     PubSub.subscribe('board.close', () => this.arrowShown = false);
+
+    PubSub.subscribe('toast.info', (en: string, data: { title: string, body: string }) =>
+      this.ns.info(data.title || '', data.body || '', data.body === void 0 ? { theClass: 'sn' } : {})
+    );
+
+    PubSub.subscribe('toast.success', (en: string, data: { title: string, body: string }) =>
+      this.ns.success(data.title || '', data.body || '', data.body === void 0 ? { theClass: 'sn' } : {})
+    );
+
+    PubSub.subscribe('toast.error', (en: string, data: { title: string, body: string }) =>
+      this.ns.error(data.title || '', data.body || '', data.body === void 0 ? { theClass: 'sn' } : {})
+    );
   }
 
   notClosePrompt(e) {
@@ -82,10 +107,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   onPromptClick() {
-
-    PubSub.publish('app.promptSubmit', { text: this.promptText });
-    this.showPrompt = false;
-    this.promptText = '';
+    if(this.promptText === '') {
+      PubSub.publish('toast.error', { title: 'The board was not created', body: 'Board name cannot be empty!' });
+    } else {
+      PubSub.publish('app.promptSubmit', { text: this.promptText });
+      this.showPrompt = false;
+      this.promptText = '';
+    }
   }
 
   ngOnInit() {

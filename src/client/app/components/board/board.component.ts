@@ -59,6 +59,7 @@ export class BoardComponent implements OnInit {
   }
 
   createList(newName) {
+    PubSub.publish('toast.success', { title: `List '${newName}' created!` });
     this.store.dispatch({
       type: ListActions.ADD_LIST,
       payload: {

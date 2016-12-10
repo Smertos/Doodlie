@@ -26,7 +26,6 @@ export class NewListComponent implements OnInit {
     if(this.newName !== '') {
       this.newList.emit(this.newName);
       this.editMode = false;
-    }
-      this.newName = '';
+    } else PubSub.publish('toast.error', { title: 'The list was not created', body: 'List name cannot be empty' });
   }
 }

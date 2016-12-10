@@ -26,7 +26,6 @@ export class NewCardComponent implements OnInit {
     if (this.newTitle !== '') {
       this.newCard.emit(this.newTitle);
       this.editMode = false;
-    }
-    this.newTitle = '';
+    } else PubSub.publish('toast.error', { title: 'The card was not created', body: 'Card title cannot be empty' });
   }
 }

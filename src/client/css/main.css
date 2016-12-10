@@ -1,5 +1,5 @@
-::-webkit-scrollbar { 
-    display: none; 
+::-webkit-scrollbar {
+    display: none;
 }
 
 * {
@@ -17,12 +17,17 @@ body {
     padding: 0;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     -webkit-touch-callout: none;
-    -webkit-user-select: none; 
-    -khtml-user-select: none; 
+    -webkit-user-select: none;
+    -khtml-user-select: none;
     -moz-user-select: none;
-    -ms-user-select: none; 
-    user-select: none; 
+    -ms-user-select: none;
+    user-select: none;
 	overflow-x: hidden;
+}
+
+.sn div div svg {
+  width: 50px;
+  height: 50px;
 }
 
 #loader {

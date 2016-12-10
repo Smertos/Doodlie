@@ -44,7 +44,10 @@ export class ProjectConfig extends SeedAdvancedConfig {
     this.SYSTEM_CONFIG.paths['@ngrx/store-devtools'] = `${this.NPM_BASE}@ngrx/store-devtools/bundles/store-devtools.min.umd.js`;
     this.SYSTEM_CONFIG.paths['dragula'] = `${this.NPM_BASE}dragula/dist/dragula.min.js`;
     this.SYSTEM_CONFIG.paths['ng2-dragula/ng2-dragula'] = `${this.NPM_BASE}ng2-dragula/ng2-dragula.js`;
+    this.SYSTEM_CONFIG.paths['angular2-notifications'] = `${this.NPM_BASE}angular2-notifications/components.js`;
+
     this.SYSTEM_CONFIG_DEV.paths['ng2-dragula/ng2-dragula'] = `${this.NPM_BASE}ng2-dragula/ng2-dragula.js`;
+    this.SYSTEM_CONFIG_DEV.paths['angular2-notifications'] = `${this.NPM_BASE}angular2-notifications/components.js`;
 
     // Production
     this.SYSTEM_BUILDER_CONFIG.paths['pubsub-js'] = `pubsub-js/src/pubsub.js`
@@ -57,8 +60,14 @@ export class ProjectConfig extends SeedAdvancedConfig {
     this.SYSTEM_BUILDER_CONFIG.paths['@angular2-material/toolbar'] = `@angular2-material/toolbar/toolbar.umd.js`;
     this.SYSTEM_BUILDER_CONFIG.paths['@ngrx/store-devtools'] = `@ngrx/store-devtools/bundles/store-devtools.min.umd.js`;
     this.SYSTEM_BUILDER_CONFIG.paths['dragula'] = `dragula/dist/dragula.min.js`;
+
     this.SYSTEM_BUILDER_CONFIG.packages['ng2-dragula/ng2-dragula'] = {
       main:`ng2-dragula.js`,
+      defaultExtension: 'js'
+    };
+
+    this.SYSTEM_BUILDER_CONFIG.packages['angular2-notifications'] = {
+      main:`components.js`,
       defaultExtension: 'js'
     };
 

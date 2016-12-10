@@ -53,6 +53,7 @@ export class ListComponent implements OnInit {
   }
 
   createCard(title) {
+    PubSub.publish('toast.success', { title: `Card added!` });
     this.store.dispatch({
       type: CardActions.ADD_CARD,
       payload: {
