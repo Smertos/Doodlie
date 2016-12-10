@@ -8,56 +8,44 @@ let db = new PouchDB('boards');
 export interface IBoard {
     _id: string;
     name: string;
-    list_ids: string[];
     createTime: number;
+    _rev: string;
 }
 
 export class Board implements IBoard {
 
     _id: string;
-    _rev: string;
     name: string;
-    list_ids: string[];
     createTime: number;
+    _rev: string;
 
     static createBoard(name: string): Promise<any> {
         let newBoard: Board = new Board('board-' + randString(), name);
         return db.put(newBoard);
     }
 
-    static from(b: { _id: string, name: string, list_ids: string[], createTime: number, _rev: string }) {
-        return new Board(b._id, b.name, b.list_ids, b.createTime, b._rev);
+    static from(b: { _id: string, name: string, createTime: number, _rev: string }): Board {
+        return new Board(b._id, b.name, b.createTime, b._rev);
     }
 
-    static getDummy() { return new Board('null', 'Dummy Board'); }
+    static getDummy(): Board { return new Board('null', 'Dummy Board'); }
 
-    constructor(_id: string, name: string, list_ids: string[] = [], createTime: number = Date.now(), _rev: string = undefined) {
+    constructor(_id: string, name: string, createTime: number = Date.now(), _rev: string = undefined) {
         this._id = _id;
-        this._rev = _rev;
         this.name = name;
-        this.list_ids = list_ids;
         this.createTime = createTime;
+        this._rev = _rev;
     }
 
-    update() {
+    update(): Promise<any> {
         return db.put(this);
     }
 
-    delete() {
+    delete(): Promise<any> {
         return db.remove(this._id, this._rev);
     }
 
-    createList(name: string) {
-        return List
-            .createList(this._id, name)
-            .then(
-                (res: { id: string }) => this.list_ids.push(res.id)
-            ).then(() => this.update());
-    }
-
-    addList(list: List) {
-        if(typeof list !== 'undefined')
-            this.list_ids.push(list._id);
-        return list;
+    createList(name: string): Promise<any> {
+        return List.createList(this._id, name);
     }
 }

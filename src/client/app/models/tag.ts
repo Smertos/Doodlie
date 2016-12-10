@@ -18,18 +18,19 @@ export class Tag implements ITag {
     colorCode: string;
     createdAt: number;
 
-    constructor(_id: string, name: string, colorCode: string, createdAt: number = Date.now()) {
-        this._id = _id;
-        this.name = name;
-        this.colorCode = colorCode;
-    }
-
-    static createTag(name: string, colorCode: string) {
+    static createTag(name: string, colorCode: string): Promise<any> {
         let newTag: Tag = new Tag(randString(), name, colorCode);
         return db.put(newTag);
     }
 
-    static from(t: { _id: string, name: string, colorCode: string, createdAt: number }) {
+    static from(t: { _id: string, name: string, colorCode: string, createdAt: number }): Tag {
         return new Tag(t._id, t.name, t.colorCode,t.createdAt);
+    }
+
+    constructor(_id: string, name: string, colorCode: string, createdAt: number = Date.now()) {
+        this._id = _id;
+        this.name = name;
+        this.colorCode = colorCode;
+        this.createdAt = createdAt;
     }
 }
