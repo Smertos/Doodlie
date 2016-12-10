@@ -1,10 +1,10 @@
 <md-toolbar color="accent">
-  <span id="arrow" (click)="sidePanShown = false"><i class="mdi mdi-close"></i></span> Options
+  <span id="arrow" (click)="close.emit()"><i class="mdi mdi-close"></i></span> Options
 
 </md-toolbar>
 
 <div class="content">
   <md-input id="side-board-name" [(ngModel)]="board.name" (input)="update($event)"></md-input>
 
-  <button md-button-raised color="error">Delete</button>
+  <button md-raised-button>Delete</button>
 </div>

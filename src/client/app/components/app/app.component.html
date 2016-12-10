@@ -27,4 +27,4 @@
 
 </div>
 
-<app-side-pan [@subPanState]="sidePanShown" [board]="sidePanBoard"></app-side-pan>
+<app-side-pan [@subPanState]="sidePanShown" [board]="sidePanBoard" (close)="sidePanShown = false"></app-side-pan>
