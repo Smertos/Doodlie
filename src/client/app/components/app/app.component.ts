@@ -4,12 +4,12 @@ import { NotificationsService } from 'angular2-notifications';
 import { BaseComponent } from '../../decorators/base.component';
 import { Board } from '../../models/board';
 
-var ipcRenderer, isElectron = String('<%= TARGET_DESKTOP %>') === 'true';
+var isElectron = String('<%= TARGET_DESKTOP %>') === 'true';
 
 console.log('isElectron', isElectron);
 
 if (isElectron) {
-  ipcRenderer = require('electron').ipcRenderer;
+  var ipcRenderer = require('electron').ipcRenderer;
 }
 
 

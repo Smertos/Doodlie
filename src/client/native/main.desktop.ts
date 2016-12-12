@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 
 let mainWindow: Electron.BrowserWindow = null;
 
@@ -31,37 +31,26 @@ app.on('ready', () => {
   mainWindow.show();
 
   mainWindow.on('closed', () => {
-    mainWindow = null
+    mainWindow = null;
   });
 
-  mainWindow.webContents.on('did-navigate-in-page', (_: any, url: string) => {
-    console.log(`Page navigated: ${url}`)
-  });
-
-  mainWindow.webContents.on('minimize', () => {
+  ipcMain.on('minimize', () => {
     if(mainWindow.isMinimized()) {
       mainWindow.restore();
-    console.log('Got request for:', 'restore');
-    }
-    else {
+    } else {
       mainWindow.minimize();
-    console.log('Got request for:', 'minimize');
     }
   });
 
-  mainWindow.webContents.on('maximize', () => {
-    if(mainWindow.isMaximized) {
-      mainWindow.minimize();
-    console.log('Got request for:', 'minimize');
-    }
-    else {
+  ipcMain.on('maximize', () => {
+    if(mainWindow.isMaximized()) {
+      mainWindow.unmaximize();
+    } else {
       mainWindow.maximize();
-    console.log('Got request for:', 'maximize');
     }
   });
 
-  mainWindow.webContents.once('close', () => {
-    console.log('Got request for:', 'close');
+  ipcMain.once('exit', () => {
     mainWindow.close();
   });
 
