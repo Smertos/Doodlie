@@ -37,6 +37,8 @@ export class ListComponent implements OnInit {
           payload: card
         });
 
+        PubSub.publish('toast.success', { title: `Card moved!` });
+
       }
 
     });
