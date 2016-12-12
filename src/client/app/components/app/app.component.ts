@@ -122,13 +122,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     let loaderStyle = (<HTMLElement>document.getElementById('loader')).style;
-    //let statusBarStyle = (<HTMLElement>document.getElementById('status-block')).style; //TODO: Replace status bar animation with angular's one
-
     loaderStyle.opacity = '0';
-    setTimeout(() => {
-      loaderStyle.display = 'none';
-      //statusBarStyle.top = '0px';
-    }, 900);
+    setTimeout(() => loaderStyle.display = 'none', 900);
   }
 
   back() {
@@ -138,21 +133,18 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   minimize() {
     if (isElectron) {
-      console.log('Minimizing...');
       ipcRenderer.send('minimize');
     }
   }
 
   maximize() {
     if (isElectron) {
-      console.log('Maximizing...');
       ipcRenderer.send('maximize');
     }
   }
 
   close() {
     if (isElectron) {
-      console.log('Exiting...');
       ipcRenderer.send('exit');
     }
   }
