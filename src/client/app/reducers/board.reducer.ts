@@ -1,20 +1,19 @@
 import { Action } from '@ngrx/store';
-import { Board, IBoard } from '../models/board';
 import { IBoardState } from '../states/board.state';
 
 export * from '../models/board';
 
 export interface IBoardActions {
-    ADD_BOARD: string,
-    ADDED_BOARD: string,
-    INIT_BOARD: string,
-    INITIALIZED_BOARD: string,
-    UPDATE_BOARD: string,
-    UPDATED_BOARD: string,
-    DELETE_BOARD: string,
-    DELETED_BOARD: string,
-    OPERATION_FAILED_BOARD: string
-} 
+    ADD_BOARD: string;
+    ADDED_BOARD: string;
+    INIT_BOARD: string;
+    INITIALIZED_BOARD: string;
+    UPDATE_BOARD: string;
+    UPDATED_BOARD: string;
+    DELETE_BOARD: string;
+    DELETED_BOARD: string;
+    OPERATION_FAILED_BOARD: string;
+}
 
 export const BoardActions: IBoardActions = {
     ADD_BOARD: 'ADD_BOARD',
@@ -42,10 +41,10 @@ export function board(state: IBoardState = initialBoardState, { type, payload } 
             return Object.assign({}, state, { boards: state.boards.concat(payload) });
 
         case BoardActions.DELETED_BOARD:
-            return Object.assign({}, state, { boards: state.boards.filter(b => b._id != payload) });
+            return Object.assign({}, state, { boards: state.boards.filter(b => b._id !== payload) });
 
         case BoardActions.OPERATION_FAILED_BOARD:
-            console.error('Action execution failed', payload)
+            console.error('Action execution failed', payload);
             return state;
 
         case BoardActions.INIT_BOARD:

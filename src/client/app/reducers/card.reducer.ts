@@ -4,16 +4,16 @@ import { ICardState } from '../states/card.state';
 export * from '../models/board';
 
 export interface ICardActions {
-    ADD_CARD: string,
-    ADDED_CARD: string,
-    INIT_CARD: string,
-    INITIALIZED_CARD: string,
-    UPDATE_CARD: string,
-    UPDATED_CARD: string,
-    DELETE_CARD: string,
-    DELETED_CARD: string,
-    OPERATION_FAILED_CARD: string
-} 
+    ADD_CARD: string;
+    ADDED_CARD: string;
+    INIT_CARD: string;
+    INITIALIZED_CARD: string;
+    UPDATE_CARD: string;
+    UPDATED_CARD: string;
+    DELETE_CARD: string;
+    DELETED_CARD: string;
+    OPERATION_FAILED_CARD: string;
+}
 
 export const CardActions: ICardActions = {
     ADD_CARD: 'ADD_CARD',
@@ -41,10 +41,10 @@ export function card(state: ICardState = initialCardState, { type, payload } : A
             return Object.assign({}, state, { cards: state.cards.concat(payload) });
 
         case CardActions.DELETED_CARD:
-            return Object.assign({}, state, { cards: state.cards.filter(l => l._id != payload) });
+            return Object.assign({}, state, { cards: state.cards.filter(l => l._id !== payload) });
 
         case CardActions.OPERATION_FAILED_CARD:
-            console.error('Action execution failed', payload)
+            console.error('Action execution failed', payload);
             return state;
 
         case CardActions.INIT_CARD:

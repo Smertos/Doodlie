@@ -4,16 +4,16 @@ import { IListState } from '../states/list.state';
 export * from '../models/board';
 
 export interface IListActions {
-    ADD_LIST: string,
-    ADDED_LIST: string,
-    INIT_LIST: string,
-    INITIALIZED_LIST: string,
-    UPDATE_LIST: string,
-    UPDATED_LIST: string,
-    DELETE_LIST: string,
-    DELETED_LIST: string,
-    OPERATION_FAILED_LIST: string
-} 
+    ADD_LIST: string;
+    ADDED_LIST: string;
+    INIT_LIST: string;
+    INITIALIZED_LIST: string;
+    UPDATE_LIST: string;
+    UPDATED_LIST: string;
+    DELETE_LIST: string;
+    DELETED_LIST: string;
+    OPERATION_FAILED_LIST: string;
+}
 
 export const ListActions: IListActions = {
     ADD_LIST: 'ADD_LIST',
@@ -41,10 +41,10 @@ export function list(state: IListState = initialListState, { type, payload } : A
             return Object.assign({}, state, { lists: state.lists.concat(payload) });
 
         case ListActions.DELETED_LIST:
-            return Object.assign({}, state, { lists: state.lists.filter(l => l._id != payload) });
+            return Object.assign({}, state, { lists: state.lists.filter(l => l._id !== payload) });
 
         case ListActions.OPERATION_FAILED_LIST:
-            console.error('Action execution failed', payload)
+            console.error('Action execution failed', payload);
             return state;
 
         case ListActions.INIT_LIST:
