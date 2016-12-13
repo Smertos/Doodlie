@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Board } from '../../models/board';
+import { BoardActions } from '../../reducers/board.reducer';
 import { IAppState } from '../../states/app.state';
 
 @Component({
@@ -19,7 +20,18 @@ export class SidePanComponent implements OnInit {
 
   ngOnInit() { }
 
-  update(e) {
-    console.log('Updating', this.board.name, e);
+  update() {
+    this.store.dispatch({
+      type: BoardActions.UPDATE_BOARD,
+      payload: this.board
+    });
+  }
+
+  delete() {
+    this.close.emit();
+    this.store.dispatch({
+      type: BoardActions.DELETE_BOARD,
+      payload: this.board._id
+    });
   }
 }

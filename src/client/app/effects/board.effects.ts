@@ -17,7 +17,6 @@ import { Board } from '../models/board';
 
 @Injectable()
 export class BoardEffects {
-    constructor(private actions$: Actions, private bService: BoardsService) { }
 
     @Effect() init$ = this.actions$
         .ofType(BoardActions.INIT_BOARD)
@@ -60,8 +59,8 @@ export class BoardEffects {
                                         payload: Object.assign({ error: err }, action)
                                     })
                                 )
-                    )
-                    
+                    );
+
             }
         );
 
@@ -93,7 +92,7 @@ export class BoardEffects {
                     (board: Board) => Observable
                         .fromPromise(board.delete())
                         .map(
-                            (resp: { id: string }) => ({ 
+                            (resp: { id: string }) => ({
                                 type: BoardActions.DELETED_BOARD,
                                 payload: resp.id
                             })
@@ -105,4 +104,6 @@ export class BoardEffects {
                         )
                 )
         );
+
+    constructor(private actions$: Actions, private bService: BoardsService) { }
 }

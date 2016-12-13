@@ -36,25 +36,29 @@ export class BoardsService {
   getBoard(_id: string): Promise<Board> {
     return this.boardsDB
               .get(_id)
-              .then(doc => Board.from(doc));
+              .then(doc => Board.from(doc))
+              .catch(console.error);
   }
 
   getList(_id: string): Promise<List> {
     return this.listsDB
               .get(_id)
-              .then(doc => List.from(doc));
+              .then(doc => List.from(doc))
+              .catch(console.error);
   }
 
   getCard(_id: string): Promise<Card> {
     return this.cardsDB
               .get(_id)
-              .then(doc => Card.from(doc));
+              .then(doc => Card.from(doc))
+              .catch(console.error);
   }
 
   getTag(_id: string): Promise<Tag> {
     return this.tagsDB
               .get(_id)
-              .then(doc => Tag.from(doc));
+              .then(doc => Tag.from(doc))
+              .catch(console.error);
   }
 
   private retrieveAllBoards() {
@@ -62,7 +66,7 @@ export class BoardsService {
       include_docs: true
     })
     .then(res => res.rows.map(e => Board.from(e.doc)))
-    .catch(err => console.error(err));
+    .catch(console.error);
   }
 
   private retrieveAllLists(board_id: string) {

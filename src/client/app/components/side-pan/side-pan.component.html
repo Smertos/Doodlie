@@ -4,7 +4,7 @@
 </md-toolbar>
 
 <div class="content">
-  <md-input id="side-board-name" [(ngModel)]="board.name" (input)="update($event)"></md-input>
+  <md-input id="side-board-name" [(ngModel)]="board.name" (keyup.enter)="update()"></md-input>
 
-  <button md-raised-button>Delete</button>
+  <button md-raised-button (click)="delete()">Delete</button>
 </div>

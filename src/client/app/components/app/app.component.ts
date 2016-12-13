@@ -22,23 +22,31 @@ if (isElectron) {
   animations: [
 
     trigger('subPanState', [
+
       state('true', style({
         right: '0px'
       })),
+
       state('false', style({
         right: '-310px'
       })),
+
       transition('* => *', animate('200ms'))
+
     ]),
 
     trigger('arrowState', [
+
       state('true', style({
         transform: 'translateY(0)'
       })),
+
       state('false', style({
         transform: 'translateY(-100%)'
       })),
+
       transition('* => *', animate('200ms'))
+
     ])
 
   ]
