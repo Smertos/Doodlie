@@ -20,6 +20,7 @@ import { MdToolbarModule } from '@angular2-material/toolbar';
 //If you see an error 'Cannon find module', just ignore it. I'm to lazy to make types by myself :b
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'angular2-perfect-scrollbar';
 
 import { AppComponent } from './app/components/app/app.component';
 import { SidePanComponent } from './app/components/side-pan/side-pan.component';
@@ -41,6 +42,11 @@ import { BoardEffects } from './app/effects/board.effects';
 import { ListEffects } from './app/effects/list.effects';
 import { CardEffects } from './app/effects/card.effects';
 
+const PS_CONFIG : PerfectScrollbarConfigInterface = {
+  suppressScrollX: false,
+  suppressScrollY: true
+};
+
 //Our module
 @NgModule({
   imports: [
@@ -59,7 +65,8 @@ import { CardEffects } from './app/effects/card.effects';
     MdListModule,
     MdToolbarModule,
     DragulaModule,
-    SimpleNotificationsModule
+    SimpleNotificationsModule,
+    PerfectScrollbarModule.forRoot(PS_CONFIG)
   ],
   declarations: [
     AppComponent,

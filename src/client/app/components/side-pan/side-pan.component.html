@@ -3,8 +3,8 @@
 
 </md-toolbar>
 
-<div class="content">
-  <md-input id="side-board-name" [(ngModel)]="board.name" (keyup.enter)="update()"></md-input>
+<div class="content" *ngIf="shown">
+  <md-input id="side-board-name" [(ngModel)]="board.name" (keyup.enter)="update()" placeholder="Board Name..."></md-input>
 
   <button md-raised-button (click)="delete()">Delete</button>
 </div>

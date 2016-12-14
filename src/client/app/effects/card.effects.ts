@@ -17,7 +17,6 @@ import { Card } from '../models/card';
 
 @Injectable()
 export class CardEffects {
-    constructor(private actions$: Actions, private bService: BoardsService) { }
 
     @Effect() init$ = this.actions$
         .ofType(CardActions.INIT_CARD)
@@ -25,7 +24,7 @@ export class CardEffects {
             action => Observable
                 .fromPromise(this.bService.getAllCards())
                 .map(
-                    cards => ({ 
+                    cards => ({
                         type: CardActions.INITIALIZED_CARD,
                         payload: cards
                     })
@@ -47,7 +46,7 @@ export class CardEffects {
                         Observable
                             .fromPromise(this.bService.getCard(resp.id))
                             .map(
-                                (card: Card) => ({ 
+                                (card: Card) => ({
                                     type: CardActions.ADDED_CARD,
                                     payload: card
                                 })
@@ -66,7 +65,7 @@ export class CardEffects {
             (action: { type: string, payload: Card }) => Observable
                 .fromPromise(action.payload.update())
                 .map(
-                    () => ({ 
+                    () => ({
                         type: CardActions.UPDATED_CARD
                     })
                 ).catch(
@@ -83,7 +82,7 @@ export class CardEffects {
             (action: { type: string, payload: Card }) => Observable
                 .fromPromise(action.payload.delete())
                 .map(
-                    () => ({ 
+                    () => ({
                         type: CardActions.DELETED_CARD
                     })
                 ).catch(
@@ -93,4 +92,6 @@ export class CardEffects {
                     })
                 )
         );
+
+    constructor(private actions$: Actions, private bService: BoardsService) { }
 }

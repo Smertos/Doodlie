@@ -1,4 +1,4 @@
-import { OnInit, Output, EventEmitter, HostBinding, ChangeDetectorRef } from '@angular/core';
+import { OnInit, Output, EventEmitter, HostBinding, ChangeDetectorRef, ElementRef, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
@@ -18,22 +18,41 @@ let _ = require('lodash');
   moduleId: module.id,
   selector: 'app-board',
   templateUrl: 'board.component.html',
-  styleUrls: ['board.component.css']
+  styleUrls: ['board.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
-export class BoardComponent implements OnInit {
+export class BoardComponent implements OnInit, OnChanges {
 
   @HostBinding('class.shown') boardShown: boolean = false;
   @Output() closeBoardPanel = new EventEmitter(true);
   board: Board;
   lists: Observable<List[]>;
+  maxScroll: Number = 0;
+  currScroll: Number = 0;
 
-  constructor(private bService: BoardsService, private store: Store<IAppState>, private cd: ChangeDetectorRef) {
+  constructor(private bService: BoardsService, private store: Store<IAppState>, private cd: ChangeDetectorRef, private er: ElementRef) {
     this.lists = this.store.select(state =>
       _.sortBy(state.list.lists.filter(e => e.parent_id === (this.board || { _id: '-' })._id), ['createTime'])
     );
   }
 
+  getScrollWidth() { return this.er.nativeElement.scrollWidth - this.er.nativeElement.clientWidth; }
+
   ngOnInit() {
+
+    this.maxScroll = this.getScrollWidth();
+    console.log(this.er.nativeElement.scrollWidth);
+    console.log(this.er.nativeElement.clientWidth);
+    console.log(this.maxScroll);
+
+    this.er.nativeElement.onscroll = () => {
+      this.maxScroll = this.getScrollWidth();
+    };
+
+    window.onresize = () => {
+      this.maxScroll = this.getScrollWidth();
+    };
+
     PubSub.subscribe('board.open', () => {
       this.boardShown = true;
       this.cd.markForCheck();
@@ -46,6 +65,12 @@ export class BoardComponent implements OnInit {
 
     PubSub.subscribe('board.loadBoard', (ename: string, board: Board) => {
       this.board = board;
+
+      this.maxScroll = this.getScrollWidth();
+      console.log(this.er.nativeElement.scrollWidth);
+      console.log(this.er.nativeElement.clientWidth);
+      console.log(this.maxScroll);
+
       this.store.dispatch({ type: 'REFRESH' });
     });
 
@@ -56,6 +81,17 @@ export class BoardComponent implements OnInit {
       });
     });
 
+  }
+
+  ngOnChanges() {
+    this.maxScroll = this.getScrollWidth();
+    console.log(this.er.nativeElement.scrollWidth);
+    console.log(this.er.nativeElement.clientWidth);
+    console.log(this.maxScroll);
+  }
+
+  scroll(e) {
+    this.er.nativeElement.scrollLeft = this.currScroll;
   }
 
   createList(newName) {

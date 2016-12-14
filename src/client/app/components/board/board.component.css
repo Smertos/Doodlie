@@ -1,28 +1,32 @@
 :host {
-    width: 100%;
-    max-width: 100%;
-    height: calc(100% - 80px);
-    border: 0;
-    margin: 80px 0 0;
-    padding: 20px;
-    word-break: break-word;
-    position: absolute;
-    -webkit-transform: translateX(100%);
-    -ms-transform: translateX(100%);
-    transform: translateX(100%);
-    transition: 0.2s ease-in-out;
-    background: white;
-    display: inline-block;
-    overflow-x: scroll;
+  width: 100%;
+  max-width: 100%;
+  height: calc(100% - 80px);
+  border: 0;
+  margin: 80px 0 0;
+  padding: 20px 5px 5px;
+  word-break: break-word;
+  position: absolute;
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+  transition: 0.2s ease-in-out;
+  background: white;
+  display: inline-block;
+  overflow-x: scroll;
 }
 
 :host.shown {
-    -webkit-transform: translateX(0);
-    -ms-transform: translateX(0);
-    transform: translateX(0);
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
 }
 
 .container {
-    white-space: nowrap;
-		display: inline-block;
+  white-space: nowrap;
+  display: inline-block;
+  max-height: 100%;
+  overflow: hidden;
+  height: 100%;
+  padding-bottom: 40px;
 }

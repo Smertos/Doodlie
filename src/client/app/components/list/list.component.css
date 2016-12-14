@@ -32,7 +32,7 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    min-height: 20px;
+    min-height: 40px;
 }
 
 footer:hover {
@@ -52,20 +52,24 @@ footer:hover {
     font-size: 17px;
     font-weight: 300;
 }
- 
+
 .gu-hide {
     display: none !important;
 }
- 
+
 .gu-unselectable {
     -webkit-user-select: none !important;
     -moz-user-select: none !important;
     -ms-user-select: none !important;
     user-select: none !important;
 }
- 
+
 .gu-transit {
     opacity: 0.2;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
     filter: alpha(opacity=20);
+}
+
+md-input {
+  width: 100%;
 }

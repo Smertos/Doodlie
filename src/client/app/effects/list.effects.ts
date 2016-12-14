@@ -17,7 +17,6 @@ import { List } from '../models/list';
 
 @Injectable()
 export class ListEffects {
-    constructor(private actions$: Actions, private bService: BoardsService) { }
 
     @Effect() init$ = this.actions$
         .ofType(ListActions.INIT_LIST)
@@ -25,7 +24,7 @@ export class ListEffects {
             action => Observable
                 .fromPromise(this.bService.getAllLists())
                 .map(
-                    lists => ({ 
+                    lists => ({
                         type: ListActions.INITIALIZED_LIST,
                         payload: lists
                     })
@@ -47,7 +46,7 @@ export class ListEffects {
                         Observable
                             .fromPromise(this.bService.getList(resp.id))
                             .map(
-                                (list: List) => ({ 
+                                (list: List) => ({
                                     type: ListActions.ADDED_LIST,
                                     payload: list
                                 })
@@ -63,21 +62,17 @@ export class ListEffects {
     @Effect() update$ = this.actions$
         .ofType(ListActions.UPDATE_LIST)
         .switchMap(
-            action => Observable
-                .fromPromise(this.bService.getList(action.payload))
-                .switchMap(
-                    (list: List) => Observable
-                        .fromPromise(list.update())
-                        .map(
-                            () => ({ 
-                                type: ListActions.UPDATED_LIST
-                            })
-                        ).catch(
-                            err => Observable.of({
-                                type: ListActions.OPERATION_FAILED_LIST,
-                                payload: Object.assign({ error: err }, action)
-                            })
-                        )
+            (action: { type: string, payload: List }) => Observable
+                .fromPromise(action.payload.update())
+                .map(
+                    () => ({
+                        type: ListActions.UPDATED_LIST
+                    })
+                ).catch(
+                    err => Observable.of({
+                        type: ListActions.OPERATION_FAILED_LIST,
+                        payload: Object.assign({ error: err }, action)
+                    })
                 )
         );
 
@@ -90,7 +85,7 @@ export class ListEffects {
                     (list: List) => Observable
                         .fromPromise(list.delete())
                         .map(
-                            (resp: { id: string }) => ({ 
+                            (resp: { id: string }) => ({
                                 type: ListActions.DELETED_LIST,
                                 payload: resp.id
                             })
@@ -102,4 +97,6 @@ export class ListEffects {
                         )
                 )
         );
+
+    constructor(private actions$: Actions, private bService: BoardsService) { }
 }

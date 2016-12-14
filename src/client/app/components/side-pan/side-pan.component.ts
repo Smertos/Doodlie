@@ -14,6 +14,7 @@ import { IAppState } from '../../states/app.state';
 export class SidePanComponent implements OnInit {
 
   @Input() board: Board;
+  @Input() shown: boolean;
   @Output() close: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private store: Store<IAppState>) { }
@@ -25,6 +26,7 @@ export class SidePanComponent implements OnInit {
       type: BoardActions.UPDATE_BOARD,
       payload: this.board
     });
+    PubSub.publish('toast.success', { title: `Board renamed to '${this.board.name}'!` });
   }
 
   delete() {
@@ -33,5 +35,6 @@ export class SidePanComponent implements OnInit {
       type: BoardActions.DELETE_BOARD,
       payload: this.board._id
     });
+    PubSub.publish('toast.success', { title: `Board '${this.board.name}' deleted!` });
   }
 }

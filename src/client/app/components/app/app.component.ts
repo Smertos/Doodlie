@@ -73,7 +73,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     lastOnBottom: true,
     clickToClose: true,
     maxStack: 3,
-    preventDuplicates: true,
+    preventDuplicates: false,
     animate: 'fromRight'
   };
 

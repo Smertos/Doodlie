@@ -6,9 +6,8 @@ import { BaseComponent } from '../../decorators/base.component';
 import { IAppState } from '../../states/app.state';
 import { List } from '../../models/list';
 import { Card } from '../../models/card';
+import { ListActions } from '../../reducers/list.reducer';
 import { CardActions } from '../../reducers/card.reducer';
-
-let _ = require('lodash');
 
 @BaseComponent({
   moduleId: module.id,
@@ -20,6 +19,8 @@ export class ListComponent implements OnInit {
 
   @Input() list: List;
   cards: Card[];
+  editMode: boolean = false;
+  nameBuffer: string = '';
 
   constructor(private store: Store<IAppState>, private ds: DragulaService, private er: ElementRef, private cd: ChangeDetectorRef) {
 
@@ -63,6 +64,25 @@ export class ListComponent implements OnInit {
         title: title
       }
     });
+  }
 
+  update() {
+    this.store.dispatch({
+      type: ListActions.UPDATE_LIST,
+      payload: this.list
+    });
+    PubSub.publish('toast.success', { title: `List renamed to '${this.list.name}'!` });
+    this.editMode = false;
+  }
+
+  edit() {
+    this.nameBuffer = this.list.name;
+    this.editMode = true;
+    console.log(this.list);
+  }
+
+  cancel() {
+    this.list.name = this.nameBuffer;
+    this.editMode = false;
   }
 }

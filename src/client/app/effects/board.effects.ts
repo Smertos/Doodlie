@@ -67,20 +67,16 @@ export class BoardEffects {
     @Effect() update$ = this.actions$
         .ofType(BoardActions.UPDATE_BOARD)
         .switchMap(
-            action => Observable
-                .fromPromise(this.bService.getBoard(action.payload))
-                .switchMap(
-                    (board: Board) => Observable
-                        .fromPromise(board.update())
-                        .map(
-                            () => ({ type: BoardActions.UPDATED_BOARD })
-                        ).catch(
-                            err => Observable.of({
-                                type: BoardActions.OPERATION_FAILED_BOARD,
-                                payload: Object.assign({ error: err }, action)
-                            })
-                        )
-                )
+          (action: { type: string, payload: Board }) => Observable
+              .fromPromise(action.payload.update())
+              .map(
+                  () => ({ type: BoardActions.UPDATED_BOARD })
+              ).catch(
+                  err => Observable.of({
+                      type: BoardActions.OPERATION_FAILED_BOARD,
+                      payload: Object.assign({ error: err }, action)
+                  })
+              )
         );
 
     @Effect() delete$ = this.actions$

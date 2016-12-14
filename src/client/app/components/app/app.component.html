@@ -27,6 +27,6 @@
 
 </div>
 
-<app-side-pan [@subPanState]="sidePanShown" [board]="sidePanBoard" (close)="sidePanShown = false"></app-side-pan>
+<app-side-pan [@subPanState]="sidePanShown" [board]="sidePanBoard" [shown]="sidePanShown" (close)="sidePanShown = false"></app-side-pan>
 
 <simple-notifications [options]="toastOptions"></simple-notifications>

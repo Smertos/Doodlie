@@ -1,5 +1,5 @@
-<div class="container">
-    <app-list *ngFor="let list of lists | async" [list]="list"></app-list>
+<perfect-scrollbar class="container">
+  <app-list *ngFor="let list of lists | async" [list]="list"></app-list>
 
-    <app-new-list (newList)="createList($event)"></app-new-list>    
-</div>
+  <app-new-list (newList)="createList($event)"></app-new-list>
+</perfect-scrollbar>

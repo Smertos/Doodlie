@@ -45,9 +45,10 @@ export class ProjectConfig extends SeedAdvancedConfig {
     this.SYSTEM_CONFIG.paths['dragula'] = `${this.NPM_BASE}dragula/dist/dragula.min.js`;
     this.SYSTEM_CONFIG.paths['ng2-dragula/ng2-dragula'] = `${this.NPM_BASE}ng2-dragula/ng2-dragula.js`;
     this.SYSTEM_CONFIG.paths['angular2-notifications'] = `${this.NPM_BASE}angular2-notifications/components.js`;
+    this.SYSTEM_CONFIG.paths['angular2-perfect-scrollbar'] = `${this.NPM_BASE}angular2-perfect-scrollbar/lib/index.js`;
 
     this.SYSTEM_CONFIG_DEV.paths['ng2-dragula/ng2-dragula'] = `${this.NPM_BASE}ng2-dragula/ng2-dragula.js`;
-    this.SYSTEM_CONFIG_DEV.paths['angular2-notifications'] = `${this.NPM_BASE}angular2-notifications/components.js`;
+    this.SYSTEM_CONFIG_DEV.paths['angular2-perfect-scrollbar'] = `${this.NPM_BASE}angular2-perfect-scrollbar/lib/index.js`;
 
     // Production
     this.SYSTEM_BUILDER_CONFIG.paths['pubsub-js'] = `pubsub-js/src/pubsub.js`
@@ -68,6 +69,11 @@ export class ProjectConfig extends SeedAdvancedConfig {
 
     this.SYSTEM_BUILDER_CONFIG.packages['angular2-notifications'] = {
       main:`components.js`,
+      defaultExtension: 'js'
+    };
+
+    this.SYSTEM_BUILDER_CONFIG.packages['angular2-perfect-scrollbar'] = {
+      main:`lib/index.js`,
       defaultExtension: 'js'
     };
 
