@@ -10,7 +10,13 @@ export = () => {
     'node_modules/angulartics2/**/*',
     'node_modules/lodash/**/*',
     'node_modules/ng2-translate/**/*',
-    'node_modules/@ngrx/**/*'
+    'node_modules/@ngrx/**/*',
+    'node_modules/pubsub-js/**/*',
+    'node_modules/@angular2-material/**/*',
+    'node_modules/dragula/**/*',
+    'node_modules/ng2-dragula/**/*',
+    'node_modules/angular2-notifications/**/*',
+    'node_modules/angular2-perfect-scrollbar/**/*'
   ];
 
   src.push(...Config.NPM_DEPENDENCIES.map(x => relative(Config.PROJECT_ROOT, x.src)));
