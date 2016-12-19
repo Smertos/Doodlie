@@ -64,6 +64,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   sidePanBoard: Board = Board.getDummy();
 
   arrowShown: boolean = false;
+  showBlur: boolean = false;
 
   toastOptions: any = {
     position: ['bottom','right'],
@@ -155,6 +156,10 @@ export class AppComponent implements OnInit, AfterViewInit {
     if (isElectron) {
       ipcRenderer.send('exit');
     }
+  }
+
+  blur(val: boolean) {
+    this.showBlur = val;
   }
 
 }

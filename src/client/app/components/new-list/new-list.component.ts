@@ -18,8 +18,8 @@ export class NewListComponent implements OnInit {
   ngOnInit() { }
 
   reset() {
-      this.editMode = false;
-      this.newName = '';
+    this.editMode = false;
+    this.newName = '';
   }
 
   create() {

@@ -36,6 +36,8 @@ export class Card implements ICard {
         return new Card(c.parent_id, c._id, c.title, c.description, c.tags_ids, c.until, c.createdAt, c._rev);
     }
 
+    static getDummy(): Card { return new Card('null', 'null', 'Dummy Card'); }
+
     constructor(parent_id:string, _id: string, title: string, description: string = '', tags_ids: string[] = [], until: number = -1, createdAt: number = Date.now(), _rev: string = undefined) {
         this.parent_id = parent_id;
         this._id = _id;

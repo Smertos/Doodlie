@@ -1,19 +1,19 @@
 :host {
   width: 300px;
-	height: calc(100% - 50px);
-	position: absolute;
-	z-index: 6;
-	top: 50px;
-	right: 0;
-	background: white;
-	transition: right 0.3s ease-in-out;
-	box-shadow: -4px 0 8px -5px #000;
-	display: flex;
+  height: calc(100% - 50px);
+  position: absolute;
+  z-index: 6;
+  top: 50px;
+  right: 0;
+  background: white;
+  transition: right 0.3s ease-in-out;
+  box-shadow: -4px 0 8px -5px #000;
+  display: flex;
   flex-direction: column;
 }
 
 .filler {
-	flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 md-input {
@@ -21,18 +21,18 @@ md-input {
 }
 
 md-toolbar {
-	padding: 0 50px;
+  padding: 0 50px;
 }
 
 md-toolbar span {
-	position: absolute;
-	left: 16px;
-	cursor: pointer;
+  position: absolute;
+  left: 16px;
+  cursor: pointer;
 }
 
 .content {
-	flex-grow: 1;
-	padding: 20px;
+  flex-grow: 1;
+  padding: 20px;
 }
 
 .content button {

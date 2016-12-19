@@ -1,9 +1,9 @@
 :host {
-	width: 200%;
-	height: calc(100% - 80px);
-	border: 0;
-	margin: 0;
-	padding: 0;
-	transition: left 0.4s ease-in-out;
-	overflow-y: scroll;
+  width: 200%;
+  height: calc(100% - 80px);
+  border: 0;
+  margin: 0;
+  padding: 0;
+  transition: left 0.4s ease-in-out;
+  overflow-y: scroll;
 }

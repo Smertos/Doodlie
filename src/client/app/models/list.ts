@@ -30,6 +30,8 @@ export class List implements IList {
         return new List(l.parent_id, l._id, l.name, l.createTime, l._rev);
     }
 
+    static getDummy(): List { return new List('null', 'null','Dummy List'); }
+
     constructor(parent_id: string, _id: string, name: string, createTime: number = Date.now(), _rev: string = undefined) {
         this.parent_id = parent_id;
         this._id = _id;

@@ -1,73 +1,73 @@
 :host {
-    display: inline-flex;
-    width: 275px;
-    margin: 0 40px;
-    vertical-align: top;
-    white-space: normal;
-    background-color: rgba(230, 230, 230, 0.8);
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 3px;
-    overflow: hidden;
+  display: inline-flex;
+  width: 275px;
+  margin: 0 40px;
+  vertical-align: top;
+  white-space: normal;
+  background-color: rgba(230, 230, 230, 0.8);
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
 header {
-    padding: 10px;
+  padding: 10px;
 }
 
 footer {
-    transition: 0.2s ease-in-out;
-    transition-property: background-color, color;
-    color: rgb(110, 110, 110);
+  transition: 0.2s ease-in-out;
+  transition-property: background-color, color;
+  color: rgb(110, 110, 110);
 }
 
 .list-title {
-    color: rgb(56, 56, 56);
-    font-weight: 500;
-    font-size: 17px;
-    display: block;
+  color: rgb(56, 56, 56);
+  font-weight: 500;
+  font-size: 17px;
+  display: block;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  min-height: 40px;
 }
 
 footer:hover {
-    background-color: rgba(210, 210, 210, 0.8);
-    cursor: pointer;
-    color: rgb(20, 20, 20);
+  background-color: rgba(210, 210, 210, 0.8);
+  cursor: pointer;
+  color: rgb(20, 20, 20);
 }
 
 .gu-mirror {
-    position: fixed !important;
-    margin: 0 !important;
-    z-index: 9999 !important;
-    opacity: 0.8;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-    filter: alpha(opacity=80);
-    font-family: Roboto, sans-serif;
-    font-size: 17px;
-    font-weight: 300;
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+  font-family: Roboto, sans-serif;
+  font-size: 17px;
+  font-weight: 300;
 }
 
 .gu-hide {
-    display: none !important;
+  display: none !important;
 }
 
 .gu-unselectable {
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    -ms-user-select: none !important;
-    user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
 }
 
 .gu-transit {
-    opacity: 0.2;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
-    filter: alpha(opacity=20);
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
 }
 
 md-input {

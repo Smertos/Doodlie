@@ -1,15 +1,15 @@
 :host {
-    display: block;
-    margin: 10px;
-    border-radius: 3px;
-    min-height: 80px;
-    background-color: rgb(253, 253, 253);
-    overflow: hidden;
-    padding: 5px;
-    cursor: pointer;
+  display: block;
+  margin: 10px;
+  border-radius: 3px;
+  min-height: 80px;
+  background-color: rgb(253, 253, 253);
+  overflow: hidden;
+  padding: 5px;
+  cursor: pointer;
 }
 
 .title {
-    font-size: 17px;
-    font-weight: 300;
+  font-size: 17px;
+  font-weight: 300;
 }

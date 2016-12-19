@@ -15,7 +15,7 @@
 	<span id="arrow" [@arrowState]="arrowShown" (click)="back()"><i class="mdi mdi-arrow-left-bold"></i></span>
 </div>
 
-<app-wrapper [class.blurry]="showPrompt"></app-wrapper>
+<app-wrapper [class.blurry]="showPrompt || showBlur"></app-wrapper>
 
 <div id="prompt-wrapper" *ngIf="showPrompt" (click)="closePrompt()">
 
@@ -28,5 +28,6 @@
 </div>
 
 <app-side-pan [@subPanState]="sidePanShown" [board]="sidePanBoard" [shown]="sidePanShown" (close)="sidePanShown = false"></app-side-pan>
+<app-card-options (blur)="blur($event)"></app-card-options>
 
 <simple-notifications [options]="toastOptions"></simple-notifications>

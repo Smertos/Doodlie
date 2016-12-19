@@ -31,6 +31,7 @@ export class BoardComponent implements OnInit {
     this.lists = this.store.select(state =>
       _.sortBy(state.list.lists.filter(e => e.parent_id === (this.board || { _id: '-' })._id), ['createTime'])
     );
+    this.lists.subscribe(console.dir);
   }
 
   ngOnInit() {

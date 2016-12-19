@@ -1,86 +1,86 @@
 :host {
-    width: 100%;
-    max-width: 100%;
-    height: calc(100% - 80px);
-    border: 0;
-    margin: 80px 0 0;
-    padding: 10px;
-    word-break: break-word;
-    background: white;
-    position: absolute;
+  width: 100%;
+  max-width: 100%;
+  height: calc(100% - 80px);
+  border: 0;
+  margin: 80px 0 0;
+  padding: 10px;
+  word-break: break-word;
+  background: white;
+  position: absolute;
 }
 
 :host div {
-    margin: 10px 5px;
-    display: flex;
-    flex-wrap: wrap;
+  margin: 10px 5px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 :host div md-card {
-    color: white;
-    width: 240px;
-    height: 140px;
-    background: #0074c7;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    font-weight: 700;
-    font-size: 1.25em;
-    word-break: break-all;
-    cursor: pointer;
-    display: list-item;
-    box-sizing: border-box;
-    transition: 0.2s ease-out;
-    list-style-type: none;
-    overflow: hidden;
+  color: white;
+  width: 240px;
+  height: 140px;
+  background: #0074c7;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 1.25em;
+  word-break: break-all;
+  cursor: pointer;
+  display: list-item;
+  box-sizing: border-box;
+  transition: 0.2s ease-out;
+  list-style-type: none;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 640px) {
-    :host div md-card {
-        flex: 100%;
-    }
+  :host div md-card {
+    flex: 100%;
+  }
 }
 
 @media screen and (min-device-width: 768px) and (min-width: 640px) {
-    :host div md-card {
-        flex: 30%;
-        max-width: 31%;
-    }
+  :host div md-card {
+    flex: 30%;
+    max-width: 31%;
+  }
 }
 
 @media screen and (min-device-width: 960px) and (min-width: 768px) {
-    :host div md-card {
-        flex: 20%;
-        max-width: 23.25%;
-    }
+  :host div md-card {
+    flex: 20%;
+    max-width: 23.25%;
+  }
 }
 
 @media screen and (min-device-width: 1024px) and (min-width: 960px) {
-    :host div md-card {
-        flex: 20%;
-        max-width: 23.25%;
-    }
+  :host div md-card {
+    flex: 20%;
+    max-width: 23.25%;
+  }
 }
 
 @media screen and (min-device-width: 1440px) and (min-width: 1024px) {
-    :host div md-card {
-        flex: 18%;
-        max-width: 18.75%;
-    }
+  :host div md-card {
+    flex: 18%;
+    max-width: 18.75%;
+  }
 }
 
 :host div md-card span {
-    line-height: 190px;
-    margin: 4px;
+  line-height: 190px;
+  margin: 4px;
 }
 
 :host div md-card a {
-    position: absolute;
-    top: 10px;
-    right: 12px;
-    will-change: opacity;
-    opacity: 0;
-    transition: 0.2s opacity;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  will-change: opacity;
+  opacity: 0;
+  transition: 0.2s opacity;
 }
 
 @media handheld {
@@ -90,25 +90,25 @@
 }
 
 :host div md-card:hover a {
-    opacity: 0.25;
+  opacity: 0.25;
 }
 
 :host div md-card a:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 md-card#new-board {
-    background: transparent !important;
-    padding: 0;
-    box-shadow: none;
+  background: transparent !important;
+  padding: 0;
+  box-shadow: none;
 }
 
 md-card#new-board span {
-    color: grey;
-    font-weight: 100;
-    line-height: 250px;
+  color: grey;
+  font-weight: 100;
+  line-height: 250px;
 }
 
 md-card#new-board span:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
