@@ -71,14 +71,13 @@ export class ListComponent implements OnInit {
       type: ListActions.UPDATE_LIST,
       payload: this.list
     });
-    PubSub.publish('toast.success', { title: `List renamed to '${this.list.name}'!` });
+    PubSub.publish('toast.success', { title: `List renamed to '${this.list.name}'` });
     this.editMode = false;
   }
 
   edit() {
     this.nameBuffer = this.list.name;
     this.editMode = true;
-    console.log(this.list);
   }
 
   cancel() {

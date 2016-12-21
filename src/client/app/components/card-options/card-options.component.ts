@@ -66,11 +66,13 @@ export class CardOptionsComponent implements OnInit {
     e.stopPropagation();
   }
 
-  save() {
+  save(s) {
     this.store.dispatch({
       type: CardActions.UPDATE_CARD,
       payload: this.card
     });
+		if(s) PubSub.publish('toast.success', { title: `Card title changed` });
+		else PubSub.publish('toast.success', { title: `Card description changed` });
   }
 
   delete() {
@@ -78,6 +80,7 @@ export class CardOptionsComponent implements OnInit {
       type: CardActions.DELETE_CARD,
       payload: this.card._id
     });
+    PubSub.publish('toast.success', { title: `Card deleted` });
     this.shown = false;
   }
 }

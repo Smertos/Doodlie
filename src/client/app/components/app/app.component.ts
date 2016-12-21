@@ -6,12 +6,9 @@ import { Board } from '../../models/board';
 
 var isElectron = String('<%= TARGET_DESKTOP %>') === 'true';
 
-console.log('isElectron', isElectron);
-
 if (isElectron) {
   var ipcRenderer = require('electron').ipcRenderer;
 }
-
 
 @BaseComponent({
   moduleId: module.id,
@@ -117,7 +114,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   onPromptClick() {
     if(this.promptText === '') {
-      PubSub.publish('toast.error', { title: 'The board was not created', body: 'Board name cannot be empty!' });
+      PubSub.publish('toast.error', { title: 'The board was not created', body: 'Board name cannot be empty' });
     } else {
       PubSub.publish('app.promptSubmit', { text: this.promptText });
       this.showPrompt = false;

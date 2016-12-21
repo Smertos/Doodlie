@@ -17,7 +17,6 @@ import { MdInputModule } from '@angular2-material/input';
 import { MdListModule } from '@angular2-material/list';
 import { MdToolbarModule } from '@angular2-material/toolbar';
 
-//If you see an error 'Cannon find module', just ignore it. I'm to lazy to make types by myself :b
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'angular2-perfect-scrollbar';

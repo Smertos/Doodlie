@@ -31,7 +31,6 @@ export class BoardComponent implements OnInit {
     this.lists = this.store.select(state =>
       _.sortBy(state.list.lists.filter(e => e.parent_id === (this.board || { _id: '-' })._id), ['createTime'])
     );
-    this.lists.subscribe(console.dir);
   }
 
   ngOnInit() {
@@ -62,7 +61,7 @@ export class BoardComponent implements OnInit {
   }
 
   createList(newName) {
-    PubSub.publish('toast.success', { title: `List '${newName}' created!` });
+    PubSub.publish('toast.success', { title: `List '${newName}' created` });
     this.store.dispatch({
       type: ListActions.ADD_LIST,
       payload: {

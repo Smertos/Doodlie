@@ -52,7 +52,6 @@ export class BoardsListComponent implements OnInit {
 
   openBoard(event: Event, _id: string) {
     event.stopPropagation();
-    console.log(`Opened board with id '${_id}'`);
 
     this.bService
       .getBoard(_id)

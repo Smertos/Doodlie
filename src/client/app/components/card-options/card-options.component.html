@@ -1,4 +1,5 @@
 <md-card (click)="cardClick($event)">
-  <md-input placeholder="Card Title" (keyup.enter)="save()" (keyup.esc)="close()" [(ngModel)]="card.title" ></md-input>
+  <md-input #title placeholder="Card Title" (keyup.enter)="save(true)" (keyup.esc)="title.blur()" [(ngModel)]="card.title" ></md-input>
+  <md-input #desc placeholder="Card Description" (keyup.enter)="save()" (keyup.esc)="desc.blur()" [(ngModel)]="card.description" ></md-input>
   <button md-raised-button id="del" (click)="delete()">Delete</button>
 </md-card>
