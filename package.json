@@ -1,6 +1,6 @@
 {
   "name": "doodlie",
-  "version": "0.0.0",
+  "version": "0.4.0",
   "description": "Kanban boards built with :heart:, Angular 2 and Electron",
   "repository": {
     "url": "https://github.com/Smertos/Doodlie"
