@@ -31,6 +31,7 @@ import { CardComponent } from './app/components/card/card.component';
 import { NewCardComponent } from './app/components/new-card/new-card.component';
 import { WrapperComponent } from './app/components/wrapper/wrapper.component';
 import { CardOptionsComponent } from './app/components/card-options/card-options.component';
+import { ListOptionsComponent } from './app/components/list-options/list-options.component';
 
 import { FocusDirective } from './app/directives/focus.directive';
 
@@ -73,6 +74,7 @@ const PS_CONFIG : PerfectScrollbarConfigInterface = {
     SidePanComponent,
     WrapperComponent,
     CardOptionsComponent,
+    ListOptionsComponent,
     BoardsListComponent,
     BoardComponent,
     ListComponent,

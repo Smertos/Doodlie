@@ -14,8 +14,8 @@ export class CardComponent implements OnInit {
 
   constructor(private er: ElementRef) { }
 
-  @HostListener('click', ['$event'])
-  onClick(e: Event) {
+  @HostListener('click')
+  onClick() {
     PubSub.publishSync('card-options.open', this.card);
   }
 

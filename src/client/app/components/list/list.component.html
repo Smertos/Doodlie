@@ -1,6 +1,6 @@
 <header>
-    <span class="list-title" *ngIf="!editMode" (click)="edit()">{{ list.name }}</span>
-    <md-input focus id="list-name" *ngIf="editMode" [(ngModel)]="list.name" (keyup.enter)="update()" (keyup.esc)="cancel()" (blur)="cancel()"></md-input>
+    <span class="list-title">{{ list.name }}</span>
+    <i class="mdi mdi-dots-vertical" (click)="onClick()"></i>
 </header>
 
 <div class="container" [dragula]="'lists'">

@@ -29,5 +29,6 @@
 
 <app-side-pan [@subPanState]="sidePanShown" [board]="sidePanBoard" [shown]="sidePanShown" (close)="sidePanShown = false"></app-side-pan>
 <app-card-options (blur)="blur($event)"></app-card-options>
+<app-list-options (blur)="blur($event)"></app-list-options>
 
 <simple-notifications [options]="toastOptions"></simple-notifications>

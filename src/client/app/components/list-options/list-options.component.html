@@ -1,0 +1,4 @@
+<md-card (click)="listClick($event)">
+  <md-input #title placeholder="List Name" (keyup.enter)="save()" (keyup.esc)="title.blur()" [(ngModel)]="list.name" ></md-input>
+  <button md-raised-button id="del" (click)="delete()">Delete</button>
+</md-card>
