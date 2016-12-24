@@ -154,14 +154,36 @@ gulp.task('desktop.mac', (done: any) =>
               'desktop.package.mac',
               done));
 
-gulp.task('desktop.windows', (done: any) =>
+gulp.task('desktop.windows.ia32', (done: any) =>
   runSequence('desktop',
-              'desktop.package.windows',
+              'desktop.package.windows.x32',
               done));
 
-gulp.task('desktop.linux', (done: any) =>
+gulp.task('desktop.windows.x64', (done: any) =>
   runSequence('desktop',
-              'desktop.package.linux',
+              'desktop.package.windows.ia32',
+              done));
+
+gulp.task('desktop.windows.all', (done: any) =>
+  runSequence('desktop',
+              'desktop.package.windows.ia32',
+              'desktop.package.windows.x64',
+              done));
+
+gulp.task('desktop.linux.ia32', (done: any) =>
+  runSequence('desktop',
+              'desktop.package.linux.ia32',
+              done));
+
+gulp.task('desktop.linux.x64', (done: any) =>
+  runSequence('desktop',
+              'desktop.package.linux.x64',
+              done));
+
+gulp.task('desktop.linux.all', (done: any) =>
+  runSequence('desktop',
+              'desktop.package.linux.ia32',
+              'desktop.package.linux.x64',
               done));
 
 // --------------
