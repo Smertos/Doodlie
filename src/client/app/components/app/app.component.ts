@@ -52,6 +52,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   appTitle: string = 'DOODLIE';
   subTitle: string = 'Select your board';
 
+  maximized: boolean = false;
+
   showPrompt: boolean = false;
   promptText: string = '';
 
@@ -145,6 +147,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   maximize() {
     if (isElectron) {
+      this.maximized = !this.maximized;
       ipcRenderer.send('maximize');
     }
   }
